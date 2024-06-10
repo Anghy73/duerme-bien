@@ -26,6 +26,7 @@ export const reducerH = (state, action) => {
 
   switch (actionType) {
     case 'ADD_H': {
+      console.log('click')
       const newH = {
         id: Date.now(),
         ...actionPayload

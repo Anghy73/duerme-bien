@@ -1,12 +1,13 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+
 import App from './App.jsx'
 import './index.css'
 import Clientes from './pages/Clientes.jsx'
 import Habitaciones from './pages/Habitaciones.jsx'
 import { HabitacionesProvider } from '../contexts/habitaciones.jsx'
+import Reservas from './pages/Reservas.jsx'
 
 const router = createBrowserRouter([
   {
@@ -15,18 +16,18 @@ const router = createBrowserRouter([
   },
   {
     path: '/clientes',
-    element: <Clientes />,
+    element: <main className='main'><Clientes /></main>,
     errorElement: <h1>Error</h1>
   },
   {
     path: '/habitaciones',
-    element: <main className='main'><HabitacionesProvider><Habitaciones /></HabitacionesProvider></main>,
+    element: <div className='main'><HabitacionesProvider><Habitaciones /></HabitacionesProvider></div>,
     errorElement: <h1>Error</h1>
+  },
+  {
+    path: '/reservas',
+    element: <div className='main'><Reservas /></div>
   }
-  // {
-  //   path: '/reservas',
-  //   element: <App />
-  // },
   // {
   //   path: '/resumen',
   //   element: <App />

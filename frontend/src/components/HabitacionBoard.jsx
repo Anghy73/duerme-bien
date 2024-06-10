@@ -4,7 +4,6 @@ import Habitacion from './Habitacion'
 
 function HabitacionBoard () {
   const { rooms } = useHabitaciones()
-  console.log(rooms)
 
   return (
     <>

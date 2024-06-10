@@ -12,8 +12,8 @@ function Header () {
           <li className='header__item'><Link className='header__link' to='/'>Inicio</Link></li>
           <li className='header__item'><Link className='header__link' to='/clientes'>Clientes</Link></li>
           <li className='header__item'><Link className='header__link' to='/habitaciones'>Habitaciones</Link></li>
-          {/* <li><Link to='/reservas'>Reservas</Link></li>
-          <li><Link to='/resumen'>Resumen</Link></li> */}
+          <li className='header__item'><Link className='header__link' to='/reservas'>Reservas</Link></li>
+          <li className='header__item'><Link className='header__link' to='/resumen'>Resumen</Link></li>
         </ul>
       </nav>
       <div className='header__profile'>
