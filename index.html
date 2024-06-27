@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Hotel Duerme Bien</title>
+</head>
+<body>
+    <div class="container">
+        <div class="title"><h1>Hotel "Duerme Bien"</h1></div>
+        <hr></hr>
+        <div class="header">
+            <ul class="nav">
+                <li><a href="#">Clientes</a></li>
+                <li><a href="#">Habitaciones</a></li>
+                <li><a href="#">Reservas</a></li>
+                <li><a href="#">Historial</a></li>
+            </ul>
+        </div>
+        <div>
+            <button class="add-button">Agregar</button>
+        </div>    
+
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>Agregar Clientes</p>
+                <hr></hr>
+                <form>
+                    <label for="run">RUN:</label>
+                    <input type="text" id="run" name="run" required><br><br>
+                    
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required><br><br>
+                    
+                    <label for="numHuespedes">Número de Huéspedes:</label>
+                    <input type="number" id="numHuespedes" name="numHuespedes" required><br><br>
+                    
+                    <label for="habitaciones">Habitaciones:</label>
+                    <input type="text" id="habitaciones" name="habitaciones" required><br><br>
+                    
+                    <label for="valorTotal">Valor Total:</label>
+                    <input type="number" id="valorTotal" name="valorTotal" required><br><br>
+                    
+                    <button type="submit">Crear</button>
+                    <button type="reset">Limpiar</button>
+                </form>
+            </div>
+        </div>
+        
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
