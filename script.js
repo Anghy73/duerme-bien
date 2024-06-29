@@ -42,44 +42,22 @@ window.onclick = (event) => {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    var clientesLink = document.getElementById("clientesLink");
-    var habitacionesLink = document.getElementById("habitacionesLink");
-    var reservasLink = document.getElementById("reservasLink");
-    var historialLink = document.getElementById("historialLink");
-    var mainContent = document.getElementById("main-content");
+    const clientesLink = document.getElementById("clientesLink");
+    const habitacionesLink = document.getElementById("habitacionesLink");
+    const reservasLink = document.getElementById("reservasLink");
+    const historialLink = document.getElementById("historialLink");
+    const mainContent = document.getElementById("main-content");
 
-    function closeContent() {
-        mainContent.style.display = "none";
-    }
-
-    function addCloseButton() {
+    const addCloseButton = () => {
         return '<button class="close-button" onclick="closeContent()">Cerrar</button>';
     }
 
     clientesLink.onclick = function() {
         mainContent.innerHTML = `
             ${addCloseButton()}
-            <p>Agregar Clientes</p>
+            <p>Gestión de Clientes</p>
             <hr>
-            <form>
-                <label for="run">RUN:</label>
-                <input type="text" id="run" name="run" required><br><br>
-                
-                <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" required><br><br>
-                
-                <label for="numHuespedes">Número de Huéspedes:</label>
-                <input type="number" id="numHuespedes" name="numHuespedes" required><br><br>
-                
-                <label for="habitaciones">Habitaciones:</label>
-                <input type="text" id="habitaciones" name="habitaciones" required><br><br>
-                
-                <label for="valorTotal">Valor Total:</label>
-                <input type="number" id="valorTotal" name="valorTotal" required><br><br>
-                
-                <button type="submit">Crear</button>
-                <button type="reset">Limpiar</button>
-            </form>
+            <!-- Contenido de Clientes -->
         `;
         mainContent.style.display = "block"; 
     }
@@ -115,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-function closeContent() {
-    var mainContent = document.getElementById("main-content");
+const  closeContent = () => {
+    const mainContent = document.getElementById("main-content");
     mainContent.style.display = "none";
 }
