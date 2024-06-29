@@ -1,3 +1,5 @@
+import { fetchData } from './supabase.js';
+
 // Obtener referencias a los elementos del DOM
 const modalCliente = document.getElementById("modal-cliente")
 const btnAgregarCliente = document.getElementById("btnAgregarCliente")
@@ -41,6 +43,11 @@ window.onclick = (event) => {
     }
 }
 
+const  closeContent = () => {
+    const mainContent = document.getElementById("main-content");
+    mainContent.style.display = "none";
+}
+
 document.addEventListener("DOMContentLoaded", function() {
     const clientesLink = document.getElementById("clientesLink");
     const habitacionesLink = document.getElementById("habitacionesLink");
@@ -52,12 +59,25 @@ document.addEventListener("DOMContentLoaded", function() {
         return '<button class="close-button" onclick="closeContent()">Cerrar</button>';
     }
 
-    clientesLink.onclick = function() {
+    clientesLink.onclick = async function() {
+        // Llama a fetchData para obtener los datos de los clientes
+        const { fetchedData, error } = await fetchData('cliente');
+        
+        if (error) {
+            console.error('Error al obtener los datos:', error);
+            return;
+        }
+        
+        // Genera el HTML de la tabla con los datos obtenidos
+        const tableHTML = generateTableHTML(fetchedData);
+        
+        // Inserta el HTML de la tabla en mainContent
         mainContent.innerHTML = `
             ${addCloseButton()}
             <p>Gestión de Clientes</p>
             <hr>
             <!-- Contenido de Clientes -->
+            ${tableHTML}
         `;
         mainContent.style.display = "block"; 
     }
@@ -93,7 +113,17 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-const  closeContent = () => {
-    const mainContent = document.getElementById("main-content");
-    mainContent.style.display = "none";
+// Función para generar el HTML de la tabla a partir de los datos de los clientes
+function generateTableHTML(clientes) {
+    let table = '<table><tr><th>Rut</th><th>Nombre</th><th>Apellido</th><th>Fono</th></tr>';
+    clientes.forEach(cliente => {
+        table += `<tr>
+                    <td>${cliente.rutcliente}</td>
+                    <td>${cliente.nombre}</td>
+                    <td>${cliente.apellido}</td>
+                    <td>${cliente.fono}</td>
+                  </tr>`;
+    });
+    table += '</table>';
+    return table;
 }
