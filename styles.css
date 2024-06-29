@@ -11,23 +11,18 @@ body {
 .title {
   text-align: center;
   margin-bottom: 20px;
-}
-
-.title h1 {
-  color: #ffffff;
-  font-size: 2em;
-  margin: 20px 0;
+  color: white;
 }
 
 .container {
   width: 90%;
   margin: 50px auto;
-  background-color: #6e566f;
+  background-color: #553e60;
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 30px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 2);
   position: relative;
-  min-height: 500px;
+  min-height: 33rem;
 }
 
 .header {
@@ -50,15 +45,17 @@ body {
 .nav a {
   padding: 10px 20px;
   background-color: #f5f5f5;
-  border-radius: 5px;
   text-decoration: none;
   color: #333;
+  border-radius: 30px;
 }
 
-.content {
-  background-color: #ddd;
+.main-content {
+  background-color: #d5c0d7;
   padding: 20px;
-  border-radius: 5px;
+  border-radius: 30px;
+  display: none;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
 }
 
 .barraRegistro {
@@ -121,4 +118,15 @@ form {
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+.close-button {
+  padding: 5px 10px;
+  background-color: #f5f5f5;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  float: right;
+  border-radius: 30px;
 }
