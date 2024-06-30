@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Función para generar el HTML de la tabla a partir de los datos de los clientes
-function generateTableHTML(clientes) {
+const generateTableHTML = (clientes) => {
     let table = '<table><tr><th>Rut</th><th>Nombre</th><th>Apellido</th><th>Fono</th></tr>';
     clientes.forEach(cliente => {
         table += `<tr>

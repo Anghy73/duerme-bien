@@ -1,5 +1,4 @@
-// Importa el cliente de Supabase
-import { createClient } from '@supabase/supabase-js';
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
 
 // Inicializa el cliente de Supabase
 const supabaseUrl = 'https://msqdyqebupfizqdtqmfg.supabase.co';
