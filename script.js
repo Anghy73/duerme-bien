@@ -40,3 +40,29 @@ window.onclick = (event) => {
         cerrarModal(modalReserva)
     }
 }
+
+const alertaInput = (mensaje) => {
+    input.classList.remove('is-valid')
+    input.classList.add('is-invalid')
+    div.innerHTML = `<span class="badge bg-danger">${mensaje}</span>`
+}
+
+// Verificar
+const verificar = (id) => {
+    const input = document.getElementById(id)
+    const div = document.getElementById('e-' + id)
+    input.classList.remove('is-valid', 'is-invalid')
+
+    if (input.value.trim() == '') {
+        alertaInput('El campo es obligatorio')
+    } else {
+        input.classList.add('is-valid')
+        div.innerHTML = ''
+        // Verificaciones específicas
+        if (id == 'run') {
+            if (input.value <= 0) {
+                alertaInput('Run no válido')
+            }
+        }
+    }
+}
