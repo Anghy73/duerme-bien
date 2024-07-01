@@ -7,10 +7,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const historialLink = document.getElementById("historialLink");
     const mainContent = document.getElementById("main-content");
 
-    const closeContent = () => {
-        const mainContent = document.getElementById("main-content");
-        mainContent.style.display = "none";
-    }
 
     const addCloseButton = () => {
         return '<button class="close-button" onclick="closeContent()">Cerrar</button>';
@@ -31,9 +27,6 @@ document.addEventListener("DOMContentLoaded", function () {
         // Inserta el HTML de la tabla en mainContent
         mainContent.innerHTML = `
             ${addCloseButton()}
-            <p>Gestión de Clientes</p>
-            <hr>
-            <!-- Contenido de Clientes -->
             ${tableHTML}
         `;
         mainContent.style.display = "block";
@@ -69,6 +62,11 @@ document.addEventListener("DOMContentLoaded", function () {
         mainContent.style.display = "block";
     }
 });
+
+const closeContent = () => {
+    const mainContent = document.getElementById("main-content");
+    mainContent.style.display = "none";
+}
 
 // Función para generar el HTML de la tabla a partir de los datos de los clientes
 const generateTableHTML = (clientes) => {
