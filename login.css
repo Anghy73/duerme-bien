@@ -1,0 +1,137 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+  
+body {
+    background-color: #f0f0f0;
+    font-family: sans-serif;
+}
+  
+.container {
+    width: 35%;
+    margin: 50px auto;
+    background-color: #64257b;
+    padding: 20px;
+    border-radius: 30px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 2);
+    position: relative;
+    min-height: 33rem;
+}
+
+.container::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 200px; 
+    background-image: url('assets/img/Diseño\ sin\ título-fotor-2024070185917.png');
+    background-size: contain;
+    transform: translate(-50%, -50%);
+    filter: blur(0px);
+    z-index: 1;
+}
+  
+.container > * {
+    position: relative;
+    z-index: 1;
+}
+
+#ContainerSession {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    backdrop-filter: blur(3px); 
+    background-color: rgba(255, 255, 255, 0.5); 
+    padding: 3rem;
+    border-radius: 30px;
+    min-height: 10rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 16rem; 
+    margin: 0; 
+    border-radius: 30px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    font-size: 16px;
+    text-align: center;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    outline: none;
+    border-color: #007bff; 
+}
+
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3; 
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.add-button {
+    margin: 10px 0;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    background-color: #64257b;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 30px;
+    transition: background-color 0.3s ease;
+    width: 15rem;
+}
+
+.add-button:hover {
+    background-color: black;
+}
+
+.recuperar {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.recuperar a {
+    text-decoration: none;
+    color: black;
+}
+
+.recuperar a:hover {
+    color: red;
+}
+
+
+
