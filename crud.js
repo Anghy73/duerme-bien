@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // Genera el HTML de la tabla con los datos obtenidos
-        const tableHTML = generateTableHTML(fetchedData);
+        const tableHTML = generateTableclientes(fetchedData);
 
         // Inserta el HTML de la tabla en mainContent
         mainContent.innerHTML = `
@@ -69,7 +69,7 @@ const closeContent = () => {
 }
 
 // Función para generar el HTML de la tabla a partir de los datos de los clientes
-const generateTableHTML = (clientes) => {
+const generateTableclientes = (clientes) => {
     let table = '<table><tr><th>Rut</th><th>Nombre</th><th>Apellido</th><th>Fono</th></tr>';
     clientes.forEach(cliente => {
         table += `<tr>
@@ -77,7 +77,21 @@ const generateTableHTML = (clientes) => {
                     <td>${cliente.nombre}</td>
                     <td>${cliente.apellido}</td>
                     <td>${cliente.fono}</td>
-                  </tr>`;
+                </tr>`;
+    });
+    table += '</table>';
+    return table;
+}
+
+const generateTablehabitaciones = (clientes) => {
+    let table = '<table><tr><th>Rut</th><th>Nombre</th><th>Apellido</th><th>Fono</th></tr>';
+    clientes.forEach(cliente => {
+        table += `<tr>
+                    <td>${cliente.rutcliente}</td>
+                    <td>${cliente.nombre}</td>
+                    <td>${cliente.apellido}</td>
+                    <td>${cliente.fono}</td>
+                </tr>`;
     });
     table += '</table>';
     return table;

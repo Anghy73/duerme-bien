@@ -9,20 +9,20 @@
     <link rel="icon" href="assets/img/favicon.ico">
 </head>
 
-    <body>
-        <div class="container">
-            <div id="ContainerSession">
-                <form action="">
-                    <input type="text" placeholder="Usuario" required>
-                    <input type="password" placeholder="Contraseña" required>
-                </form>
+<body>
+    <div class="container">
+        <div id="ContainerSession">
+            <form id="formLogin">
+                <input name="user" type="text" placeholder="Usuario" required>
+                <input name="password" type="password" placeholder="Contraseña" required>
                 <div class="buttons">
-                <button class="add-button" id="btnIniciarSesion">Iniciar Sesión</button>
-                <p class="recuperar" id="btnRecuperarContraseña"><a href="#">¿Olvidaste la contraseña?</a></p>
+                    <button class="add-button" id="btnIniciarSesion">Iniciar Sesión</button>
+                    <p class="recuperar" id="btnRecuperarContraseña"><a href="#">¿Olvidaste la contraseña?</a></p>
                 </div>
-            </div>
+            </form>
         </div>
-    
-    </body>
+    </div>
+</body>
+<script src="./login.js"></script>
 
 </html>
