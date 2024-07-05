@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // Genera el HTML de la tabla con los datos obtenidos
-        const tableHTML = generateTableHabitacion(fetchedData);
+        const tableHTML = generateTableHabitaciones(fetchedData);
 
         // Inserta el HTML de la tabla en mainContent
         mainContent.innerHTML = `
@@ -70,11 +70,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-const closeContent = () => {
-    const mainContent = document.getElementById("main-content");
-    mainContent.style.display = "none";
-}
-
 // Función para generar el HTML de la tabla a partir de los datos de los clientes
 const generateTableclientes = (clientes) => {
     let table = '<table><tr><th>Rut</th><th>Nombre</th><th>Apellido</th><th>Fono</th></tr>';
@@ -90,14 +85,17 @@ const generateTableclientes = (clientes) => {
     return table;
 }
 
-const generateTablehabitaciones = (clientes) => {
-    let table = '<table><tr><th>Rut</th><th>Nombre</th><th>Apellido</th><th>Fono</th></tr>';
-    clientes.forEach(cliente => {
+const generateTableHabitaciones = (habitacion) => {
+    let table = '<table><tr><th>ID</th><th>Estado</th><th>Cupos</th><th>Camas</th><th>Camas Grandes</th><th>Baños</th><th>Orientación</th></tr>';
+    habitacion.forEach(habitacion => {
         table += `<tr>
-                    <td>${cliente.rutcliente}</td>
-                    <td>${cliente.nombre}</td>
-                    <td>${cliente.apellido}</td>
-                    <td>${cliente.fono}</td>
+                    <td>${habitacion.idhabitacion}</td>
+                    <td>${habitacion.estado}</td>
+                    <td>${habitacion.cupos}</td>
+                    <td>${habitacion.camas}</td>
+                    <td>${habitacion.camas_grandes}</td>
+                    <td>${habitacion.banos}</td>
+                    <td>${habitacion.orientacion}</td>
                 </tr>`;
     });
     table += '</table>';

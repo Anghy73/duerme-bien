@@ -41,60 +41,6 @@ window.onclick = (event) => {
     }
 }
 
-// esto lo agrego hen ahora
-
-document.addEventListener("DOMContentLoaded", function() {
-    const clientesLink = document.getElementById("clientesLink");
-    const habitacionesLink = document.getElementById("habitacionesLink");
-    const reservasLink = document.getElementById("reservasLink");
-    const historialLink = document.getElementById("historialLink");
-    const mainContent = document.getElementById("main-content");
-
-    const addCloseButton = () => {
-        return '<button class="close-button" onclick="closeContent()">Cerrar</button>';
-    }
-
-    clientesLink.onclick = function() {
-        mainContent.innerHTML = `
-            ${addCloseButton()}
-            <p>Gestión de Clientes</p>
-            <hr>
-            <!-- Contenido de Clientes -->
-        `;
-        mainContent.style.display = "block"; 
-    }
-
-    habitacionesLink.onclick = function() {
-        mainContent.innerHTML = `
-            ${addCloseButton()}
-            <p>Gestión de Habitaciones</p>
-            <hr>
-            <!-- Contenido de Habitaciones -->
-        `;
-        mainContent.style.display = "block";
-    }
-
-    reservasLink.onclick = function() {
-        mainContent.innerHTML = `
-            ${addCloseButton()}
-            <p>Gestión de Reservas</p>
-            <hr>
-            <!-- Contenido de Reservas -->
-        `;
-        mainContent.style.display = "block";
-    }
-
-    historialLink.onclick = function() {
-        mainContent.innerHTML = `
-            ${addCloseButton()}
-            <p>Historial de Clientes</p>
-            <hr>
-            <!-- Contenido de Historial -->
-        `;
-        mainContent.style.display = "block";
-    }
-});
-
 const  closeContent = () => {
     const mainContent = document.getElementById("main-content");
     mainContent.style.display = "none";
