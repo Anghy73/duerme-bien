@@ -1,4 +1,4 @@
-import { fetchData } from './supabase.js';
+import { fetchData } from 'supabase.js';
 
 document.addEventListener("DOMContentLoaded", function () {
     const clientesLink = document.getElementById("clientesLink");
