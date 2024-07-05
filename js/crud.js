@@ -1,5 +1,6 @@
-import { fetchData } from 'supabase.js';
+import { fetchData } from './supabase.js';
 
+// Cargar el contenido de la página
 document.addEventListener("DOMContentLoaded", function () {
     const clientesLink = document.getElementById("clientesLink");
     const habitacionesLink = document.getElementById("habitacionesLink");
@@ -7,11 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const historialLink = document.getElementById("historialLink");
     const mainContent = document.getElementById("main-content");
 
-
-    const addCloseButton = () => {
-        return '<button class="close-button" onclick="closeContent()">Cerrar</button>';
-    }
-
+    // Tabla clientes
     clientesLink.onclick = async function () {
         // Llama a fetchData para obtener los datos de los clientes
         const { fetchedData, error } = await fetchData('cliente');
@@ -26,7 +23,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Inserta el HTML de la tabla en mainContent
         mainContent.innerHTML = `
-            ${addCloseButton()}
             ${tableHTML}
         `;
         mainContent.style.display = "block";
@@ -42,6 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
         mainContent.style.display = "block";
     }
 
+    // Tabla reservas
     reservasLink.onclick = function () {
         mainContent.innerHTML = `
             ${addCloseButton()}
