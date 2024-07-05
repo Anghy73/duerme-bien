@@ -8,8 +8,10 @@ formLogin.addEventListener('submit', (e) => {
 
   if (user === CREDENTIAL_NAME && password === CREDENTIAL_PASSWORD) {
     const path = window.location.pathname
-    if (path === '/login.html') {
-      window.location.pathname = 'index.html'
+    console.log(path);
+    if (path === '/index.html') {
+      console.log('dasd');
+      window.location.pathname = 'home.html'
     }
   } else {
     alert('Usuario o Contraseña no valido')
