@@ -16,9 +16,9 @@ const cerrarModal = (modal) => {
 }
 
 // Asignar evento onclick a los botones para abrir los modales
-btnAgregarCliente.onclick = () => {
-    abrirModal(modalCliente)
-}
+// btnAgregarCliente.onclick = () => {
+//     abrirModal(modalCliente)
+// }
 
 btnAgregarReserva.onclick = () => {
     abrirModal(modalReserva)

@@ -91,7 +91,7 @@ const generateTableclientes = (clientes) => {
 }
 
 const generateTableHabitaciones = (habitacion) => {
-    let table = '<table><tr><th>ID</th><th>Estado</th><th>Cupos</th><th>Camas</th><th>Camas Grandes</th><th>Baños</th><th>Orientación</th></tr>';
+    let table = '<table class="table"><tr><th>ID</th><th>Estado</th><th>Cupos</th><th>Camas</th><th>Camas Grandes</th><th>Baños</th><th>Orientación</th></tr>';
     habitacion.forEach(habitacion => {
         table += `<tr>
                     <td>${habitacion.idhabitacion}</td>

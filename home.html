@@ -30,12 +30,12 @@
         </div>
 
         <div class="barraRegistro">
-            <button class="add-button" id="btnAgregarCliente">Registrar Cliente</button>
+            <!-- <button class="add-button" id="btnAgregarCliente">Registrar Cliente</button> -->
             <button class="add-button" id="btnAgregarReserva">Nueva Reserva</button>
         </div>
 
         <!-- Formulario Cliente Nuevo -->
-        <div id="modal-cliente" class="modal">
+        <!-- <div id="modal-cliente" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <h3>Registrar Cliente</h3>
@@ -58,7 +58,7 @@
                     <button type="button">Registrar</button>
                 </form>
             </div>
-        </div>
+        </div> -->
 
         <!-- Formulario Reserva Nueva -->
         <div id="modal-reserva" class="modal">
@@ -71,11 +71,10 @@
                     <label for="run">Run Cliente:</label>
                     <input type="text" id="run" name="run" required><br><br>
 
-                    <label for="habitacion">Habitacion:</label>
+                    <!-- TODO: se agrega más tarde -->
+                    <label for="habitacion">Habitacion <span>1</span>: </label>
                     <input type="number" id="habitacion" name="habitacion" required><br><br>
-
-                    <label for="fechaInicio">Inicio estadia:</label>
-                    <input type="date" id="fechaInicio" name="fechaInicio" required><br><br>
+                    <div>+</div>
 
                     <label for="fechaFin">Fin estadia:</label>
                     <input type="date" id="fechaFin" name="fechaFin" required><br><br>
@@ -85,9 +84,6 @@
 
                     <label for="costo">Costo total:</label>
                     <input type="number" id="costo" name="costo" required><br><br>
-
-                    <label for="estado">Estado:</label>
-                    <input type="text" id="estado" name="estado" required><br><br>
 
                     <label for="detalle">Detalle:</label>
                     <input type="text" id="detalle" name="detalle" required><br><br>
