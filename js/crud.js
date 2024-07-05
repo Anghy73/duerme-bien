@@ -49,12 +49,17 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Tabla reservas
-    reservasLink.onclick = function () {
+    reservasLink.onclick = async function () {
+        const { fetchedData, error } = await fetchData('reserva');
+
+        if (error) {
+            console.error('Error al obtener los datos:', error);
+            return;
+        }
+
+        const tableHTML = generateTableReserva(fetchedData);
         mainContent.innerHTML = `
-            ${addCloseButton()}
-            <p>Gestión de Reservas</p>
-            <hr>
-            <!-- Contenido de Reservas -->
+            ${tableHTML}
         `;
         mainContent.style.display = "block";
     }
@@ -77,7 +82,7 @@ const closeContent = () => {
 
 // Función para generar el HTML de la tabla a partir de los datos de los clientes
 const generateTableclientes = (clientes) => {
-    let table = '<table><tr><th>Rut</th><th>Nombre</th><th>Apellido</th><th>Fono</th></tr>';
+    let table = '<table class="table"><tr><th>Rut</th><th>Nombre</th><th>Apellido</th><th>Fono</th></tr>';
     clientes.forEach(cliente => {
         table += `<tr>
                     <td>${cliente.rutcliente}</td>
@@ -98,6 +103,21 @@ const generateTablehabitaciones = (clientes) => {
                     <td>${cliente.nombre}</td>
                     <td>${cliente.apellido}</td>
                     <td>${cliente.fono}</td>
+                </tr>`;
+    });
+    table += '</table>';
+    return table;
+}
+
+const generateTableReserva = (reserva) => {
+    let table = '<table class="table"><tr><th>Fecha Fin</th><th>Pasajeros</th><th>Costo Total</th><th>Estado</th><th>Detalle</th></tr>';
+    reserva.forEach(reserva => {
+        table += `<tr>
+                    <td>${reserva.fecha_fin}</td>
+                    <td>${reserva.pasajeros}</td>
+                    <td>${reserva.costo_total}</td>
+                    <td>${reserva.estado}</td>
+                    <td>${reserva.detalle}</td>
                 </tr>`;
     });
     table += '</table>';

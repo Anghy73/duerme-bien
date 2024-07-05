@@ -70,7 +70,7 @@ body {
 }
 
 .main-content {
-  background-color: #d5c0d7;
+  background-color: #fff;
   padding: 20px;
   border-radius: 30px;
   display: none;
@@ -150,7 +150,3 @@ form {
   float: right;
   border-radius: 30px;
 }
-
-
-
-

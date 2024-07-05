@@ -10,7 +10,6 @@ formLogin.addEventListener('submit', (e) => {
     const path = window.location.pathname
     console.log(path);
     if (path === '/index.html') {
-      console.log('dasd');
       window.location.pathname = 'home.html'
     }
   } else {
