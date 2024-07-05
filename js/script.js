@@ -4,10 +4,12 @@ const btnAgregarCliente = document.getElementById("btnAgregarCliente")
 const modalReserva = document.getElementById("modal-reserva")
 const btnAgregarReserva = document.getElementById("btnAgregarReserva")
 const spans = document.getElementsByClassName("close") // Asume que hay un span.close para cada modal
+const formHabitaciones = document.getElementById('form-habitaciones')
+const addHabitaciones = document.getElementById('add-habitaciones')
 
 // Función para abrir un modal específico
 const abrirModal = (modal) => {
-    modal.style.display = "block"
+    modal.style.display = "flex"
 }
 
 // Función para cerrar modales
@@ -27,7 +29,6 @@ btnAgregarReserva.onclick = () => {
 // Asignar evento onclick a los spans para cerrar los modales
 for (let i = 0; i < spans.length; i++) {
     spans[i].onclick = () => {
-        cerrarModal(modalCliente);
         cerrarModal(modalReserva);
     }
 }
@@ -80,3 +81,25 @@ const valida = (e) => {
     // Evita que el formulario se envie
     e.preventDefault()
 }
+
+
+console.log(formHabitaciones);
+console.log(addHabitaciones);
+
+let numH = 1
+addHabitaciones.addEventListener('click', () => {
+    numH += 1
+
+    formHabitaciones.innerHTML += `
+        <div class="group-habitaciones">
+            <label for="habitacion">Habitacion <span> ${numH}:</span> </label>
+            <div class="select-content">
+                <select name="habitaciones">
+                    <option value="h1" selected>H°1</option>
+                    <option value="h2">H°2</option>
+                    <option value="h3">H°3</option>
+                </select>
+            </div>
+        </div>
+    `
+})

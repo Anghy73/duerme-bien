@@ -64,39 +64,61 @@
         <!-- Formulario Reserva Nueva -->
         <div id="modal-reserva" class="modal">
             <div class="modal-content">
-                <span class="close">&times;</span>
-                <h3>Nueva Reserva</h3>
+                <div class="modal-content-x">
+                    <span class="close">&times;</span>
+                    <h3>Nueva Reserva</h3>
+                </div>
                 <hr>
                 </hr>
                 <form>
-                    <label for="run">Run Cliente:</label>
-                    <input type="text" id="run" name="run" required><br><br>
+                    <div class="form__content">
+                        <div class="form__items">
+                            <div>
+                                <label for="run">Run Cliente</label>
+                                <input type="text" id="run" name="run" required>
+                            </div>
 
-                    <!-- TODO: se agrega más tarde -->
-                    <label for="habitacion">Habitacion <span>1</span>: </label>
-                    <div>
-                        <select name="habitaciones">
-                            <option value="h1" selected>H°1</option>
-                            <option value="h2">H°2</option>
-                            <option value="h3">H°3</option>
-                        </select>
+                            <div id="form-habitaciones">
+                                <div class="group-habitaciones">
+                                    <label for="habitacion">Habitacion<span>1:</span></label>
+                                    <div class="select-content">
+                                        <select name="habitaciones">
+                                            <option value="h1" selected>H°1</option>
+                                            <option value="h2">H°2</option>
+                                            <option value="h3">H°3</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="add-habitaciones">+</div>
+                            <div>
+                                <label for="fechaFin">Fin estadia:</label>
+                                <input type="date" id="fechaFin" name="fechaFin" required>
+                            </div>
+                        </div>
+                        <div class="form__items">
+                            <div>
+                                <label for="pasajeros">Pasajeros:</label>
+                                <input type="number" id="pasajeros" name="pasajeros" required>
+                            </div>
+        
+                            <div>
+                                <label for="costo">Costo total:</label>
+                                <input type="number" id="costo" name="costo" required>
+                            </div>
+        
+                            <div>
+                                <label for="detalle">Detalle:</label>
+                                <textarea name="" id=""></textarea>
+                            </div>
+                        </div>
                     </div>
-                    <div>+</div>
 
-                    <label for="fechaFin">Fin estadia:</label>
-                    <input type="date" id="fechaFin" name="fechaFin" required><br><br>
+                    <div class="buttons-content">
+                        <button class="btn" type="reset">Limpiar</button>
+                        <button class="btn" type="button">Registrar</button>
+                    </div>
 
-                    <label for="pasajeros">Pasajeros:</label>
-                    <input type="number" id="pasajeros" name="pasajeros" required><br><br>
-
-                    <label for="costo">Costo total:</label>
-                    <input type="number" id="costo" name="costo" required><br><br>
-
-                    <label for="detalle">Detalle:</label>
-                    <input type="text" id="detalle" name="detalle" required><br><br>
-
-                    <button type="reset">Limpiar</button>
-                    <button type="button">Registrar</button>
                 </form>
             </div>
         </div>
