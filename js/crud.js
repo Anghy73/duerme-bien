@@ -28,12 +28,22 @@ document.addEventListener("DOMContentLoaded", function () {
         mainContent.style.display = "block";
     }
 
-    habitacionesLink.onclick = function () {
+    // Tabla habitaciones
+    habitacionesLink.onclick = async function () {
+        // Llama a fetchData para obtener los datos de los clientes
+        const { fetchedData, error } = await fetchData('habitacion');
+
+        if (error) {
+            console.error('Error al obtener los datos:', error);
+            return;
+        }
+
+        // Genera el HTML de la tabla con los datos obtenidos
+        const tableHTML = generateTableHabitacion(fetchedData);
+
+        // Inserta el HTML de la tabla en mainContent
         mainContent.innerHTML = `
-            ${addCloseButton()}
-            <p>Gestión de Habitaciones</p>
-            <hr>
-            <!-- Contenido de Habitaciones -->
+            ${tableHTML}
         `;
         mainContent.style.display = "block";
     }
