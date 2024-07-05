@@ -41,7 +41,7 @@ window.onclick = (event) => {
     }
 }
 
-const  closeContent = () => {
+const closeContent = () => {
     const mainContent = document.getElementById("main-content");
     mainContent.style.display = "none";
 }
