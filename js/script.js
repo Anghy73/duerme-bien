@@ -1,3 +1,5 @@
+import { fetchData } from "./supabase.mjs"
+
 // Obtener referencias a los elementos del DOM
 const modalCliente = document.getElementById("modal-cliente")
 const btnAgregarCliente = document.getElementById("btnAgregarCliente")
@@ -24,12 +26,14 @@ const cerrarModal = (modal) => {
 
 btnAgregarReserva.onclick = () => {
     abrirModal(modalReserva)
+    generateHabitaciones()
 }
 
 // Asignar evento onclick a los spans para cerrar los modales
 for (let i = 0; i < spans.length; i++) {
     spans[i].onclick = () => {
         cerrarModal(modalReserva);
+        formHabitaciones.innerHTML=''
     }
 }
 
@@ -83,24 +87,43 @@ const valida = (e) => {
 }
 
 
-console.log(formHabitaciones);
-console.log(addHabitaciones);
+addHabitaciones.addEventListener('click', () => generateHabitaciones())
 
-let numH = 1
-addHabitaciones.addEventListener('click', () => {
+let numH = 0
+
+const generateHabitaciones = async () => {
     numH += 1
 
-    formHabitaciones.innerHTML += `
-        <div class="group-habitaciones">
-            <label for="habitacion">Habitacion <span> ${numH}:</span> </label>
+    const { fetchedData, error } = await fetchData('habitacion');
+    const hDisponibles = fetchedData.filter(item => item.estado == 'Disponible')
+
+    let options = ''
+    hDisponibles.forEach(item => {
+        options += `<option value=${item.idhabitacion}>${item.idhabitacion}</option>`
+    })
+
+    let group = `
+        <div class="group-habitaciones" id=${numH}>
+            <label for="habitacion">Habitacion</label>
             <div class="select-content">
                 <select name="habitaciones">
-                    <option value="h1" selected>H°1</option>
-                    <option value="h2">H°2</option>
-                    <option value="h3">H°3</option>
+                    ${options}
                 </select>
             </div>
-            <div>X</div>
+            <div id="btnDelH" class="del-habitacion" data-id=${numH}>X</div>
         </div>
     `
-})
+
+    formHabitaciones.innerHTML += group
+
+    const btnDelH = document.querySelectorAll('#btnDelH')
+
+    btnDelH.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const id = e.target.getAttribute('data-id')
+            const elem = document.getElementById(id)
+            elem.style.cssText = 'display: none !important;'
+        })
+    })
+}
+

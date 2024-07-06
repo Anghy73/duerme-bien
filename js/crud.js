@@ -1,4 +1,4 @@
-import { fetchData } from './supabase.js';
+import { fetchData } from './supabase.mjs';
 
 // Cargar el contenido de la página
 document.addEventListener("DOMContentLoaded", function () {
@@ -66,7 +66,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     historialLink.onclick = function () {
         mainContent.innerHTML = `
-            ${addCloseButton()}
             <p>Historial de Clientes</p>
             <hr>
             <!-- Contenido de Historial -->
