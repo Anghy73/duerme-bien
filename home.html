@@ -36,7 +36,7 @@
         </div>
 
         <!-- Formulario Cliente Nuevo -->
-        <!-- <div id="modal-cliente" class="modal">
+        <div id="modal-cliente" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <h3>Registrar Cliente</h3>
@@ -59,7 +59,7 @@
                     <button type="button">Registrar</button>
                 </form>
             </div>
-        </div> -->
+        </div>
 
         <!-- Formulario Reserva Nueva -->
         <div id="modal-reserva" class="modal">
@@ -70,7 +70,7 @@
                 </div>
                 <hr>
                 </hr>
-                <form>
+                <form id="formReserva">
                     <div class="form__content">
                         <div class="form__items">
                             <div>
@@ -99,14 +99,14 @@
         
                             <div>
                                 <label for="detalle">Detalle:</label>
-                                <textarea name="" id=""></textarea>
+                                <textarea name="detalle" id="detalle"></textarea>
                             </div>
                         </div>
                     </div>
 
                     <div class="buttons-content">
-                        <button class="btn" type="reset">Limpiar</button>
-                        <button class="btn" type="button">Registrar</button>
+                        <button id="btnLimpiar" class="btn" type="reset">Limpiar</button>
+                        <button id="btnRegistrar" class="btn" type="button">Registrar</button>
                     </div>
 
                 </form>
@@ -122,16 +122,3 @@
 </body>
 
 </html>
-
-
-<!-- <div class="group-habitaciones">
-    <label for="habitacion">Habitacion<span>1:</span></label>
-    <div class="select-content">
-        <select name="habitaciones">
-            <option value="h1" selected>H°1</option>
-            <option value="h2">H°2</option>
-            <option value="h3">H°3</option>
-        </select>
-    </div>
-    <div class="del-habitacion">X</div>
-</div> -->

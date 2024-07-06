@@ -8,6 +8,9 @@ const btnAgregarReserva = document.getElementById("btnAgregarReserva")
 const spans = document.getElementsByClassName("close") // Asume que hay un span.close para cada modal
 const formHabitaciones = document.getElementById('form-habitaciones')
 const addHabitaciones = document.getElementById('add-habitaciones')
+const btnRegistrar = document.getElementById('btnRegistrar')
+const btnLimpiar = document.getElementById('btnLimpiar')
+const formReserva = document.getElementById('formReserva')
 
 // Función para abrir un modal específico
 const abrirModal = (modal) => {
@@ -19,11 +22,6 @@ const cerrarModal = (modal) => {
     modal.style.display = "none"
 }
 
-// Asignar evento onclick a los botones para abrir los modales
-// btnAgregarCliente.onclick = () => {
-//     abrirModal(modalCliente)
-// }
-
 btnAgregarReserva.onclick = () => {
     abrirModal(modalReserva)
     generateHabitaciones()
@@ -34,6 +32,7 @@ for (let i = 0; i < spans.length; i++) {
     spans[i].onclick = () => {
         cerrarModal(modalReserva);
         formHabitaciones.innerHTML=''
+        formReserva.reset()
     }
 }
 
@@ -43,6 +42,8 @@ window.onclick = (event) => {
         cerrarModal(modalCliente)
     } else if (event.target == modalReserva) {
         cerrarModal(modalReserva)
+        formHabitaciones.innerHTML=''
+        formReserva.reset()
     }
 }
 
@@ -127,3 +128,29 @@ const generateHabitaciones = async () => {
     })
 }
 
+btnLimpiar.addEventListener('click', () => {
+    formReserva.reset()
+})
+
+btnRegistrar.addEventListener('click', () => {
+    const rutcliente = document.getElementById('run').value
+    const habitacionesElejidas = []
+    const selectHabitaciones = document.getElementsByName('habitaciones')
+    selectHabitaciones.forEach(item => {
+        habitacionesElejidas.push(item.value)
+    })
+
+    const finEstadia = document.getElementById('fechaFin').value
+    const pasajeros = document.getElementById('pasajeros').value
+    const costoTotal = document.getElementById('costo').value
+    const detalle = document.getElementById('detalle')
+
+    console.log({
+        rutcliente,
+        habitacionesElejidas,
+        finEstadia,
+        pasajeros,
+        costoTotal,
+        detalle
+    });
+})
