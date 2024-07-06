@@ -100,6 +100,7 @@ addHabitaciones.addEventListener('click', () => {
                     <option value="h3">H°3</option>
                 </select>
             </div>
+            <div>X</div>
         </div>
     `
 })

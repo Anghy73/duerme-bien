@@ -259,6 +259,7 @@ label {
     text-align: center;
     width: 100%;
     max-width: 90%;
+    cursor: pointer;
   }
 }
 
@@ -279,5 +280,25 @@ label {
 
 #form-habitaciones {
   display: flex;
+  justify-content: space-around;
+  padding: 0 1rem 0 0;
   gap: 1rem;
+  width: 100%;
+  height: 140px;
+  overflow-y: auto;
+}
+
+.del-habitacion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 25px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: rgba(255, 0, 0, 0.637);
+
+  &:hover {
+    background-color: rgba(255, 0, 0, 0.805);
+  }
 }
