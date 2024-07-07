@@ -1,3 +1,4 @@
+// Conexion con la base de datos de Supabase
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 
 
