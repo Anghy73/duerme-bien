@@ -69,13 +69,13 @@ body {
   border-radius: 30px;
 }
 
-.main-content {
+/* .main-content {
   background-color: #fff;
   padding: 20px;
   border-radius: 30px;
   display: none;
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
-}
+} */
 
 .barraRegistro {
   display: flex;

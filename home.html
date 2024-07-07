@@ -26,8 +26,16 @@
             </ul>
         </div>
 
+        <!-- Aqui se genera la tabla -->
         <div id="main-content" class="main-content">
-            <!-- Aquí se mostrará el contenido dinámico -->
+            <div class=" table-responsive rounded-3">
+                <table class="table table-bordered table-hover">
+                  <thead class="table-dark">
+                    <tr id="tableHead"></tr>
+                  </thead>
+                  <tbody id="tableBody"></tbody>
+                </table>
+              </div>
         </div>
 
         <div class="barraRegistro">
@@ -91,12 +99,12 @@
                                 <label for="pasajeros">Pasajeros:</label>
                                 <input type="number" id="pasajeros" name="pasajeros" required>
                             </div>
-        
+
                             <div>
                                 <label for="costo">Costo total:</label>
                                 <input type="number" id="costo" name="costo" required>
                             </div>
-        
+
                             <div>
                                 <label for="detalle">Detalle:</label>
                                 <textarea name="detalle" id="detalle"></textarea>

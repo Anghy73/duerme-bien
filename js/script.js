@@ -47,11 +47,6 @@ window.onclick = (event) => {
     }
 }
 
-const closeContent = () => {
-    const mainContent = document.getElementById("main-content");
-    mainContent.style.display = "none";
-}
-
 // Verificar es de julio
 const verificar = (id) => {
     const input = document.getElementById(id)
