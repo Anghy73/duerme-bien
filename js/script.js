@@ -15,6 +15,8 @@ const btnLimpiar = document.getElementById('btnLimpiar')
 const formReserva = document.getElementById('formReserva')
 const empladosLink = document.getElementById('empladosLink')
 const cerrarSesion = document.getElementById('cerrarSesion')
+const formEmpleados = document.getElementById('formEmpleados')
+const btnRegistrarEmpleado = document.getElementById('btnRegistrarEmpleado')
 
 btnAgregarEmpleado.addEventListener('click', () => {
     abrirModal(modalEmpleado)
@@ -57,11 +59,14 @@ window.onclick = (event) => {
 }
 
 
-const user = window.localStorage.getItem('user')
+const tipo = window.localStorage.getItem('tipo')
 
-if (user === 'admin') {
+if (tipo === 'Administrador') {
     btnAgregarEmpleado.style.display = 'flex'
     empladosLink.style.display = 'flex'
+} else {
+    btnAgregarEmpleado.style.display = 'none'
+    empladosLink.style.display = 'none'
 }
 
 const path = window.location.pathname
@@ -192,4 +197,28 @@ btnRegistrar.addEventListener('click', async () => {
         costoTotal,
         detalle
     });
+})
+
+btnRegistrarEmpleado.addEventListener('click', async () => {
+    const idE = document.getElementById('idE').value
+    const clave = document.getElementById('clave').value
+    const nombreE = document.getElementById('nombreE').value
+    const apellidoE = document.getElementById('apellidoE').value
+    const tipo = document.getElementById('tipo').value
+
+    const { error } = await insertData('empleados', {
+        rutempleado: idE,
+        clave,
+        nombre: nombreE,
+        apellido: apellidoE,
+        tipo
+    });
+
+    if (error) {
+        alert('ha ocurrido un error')
+        formEmpleados.reset()
+    } else {
+        alert('Todo correcto')
+        formEmpleados.reset()
+    }
 })

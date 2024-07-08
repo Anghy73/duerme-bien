@@ -40,7 +40,7 @@ body {
   border-radius: 30px;
   box-shadow: 0 0 25px rgba(0, 0, 0, 2);
   position: relative;
-  min-height: 33rem;
+  min-height: 36rem;
 }
 
 .container::before {
@@ -50,7 +50,7 @@ body {
   left: 50%;
   width: 200px;
   height: 200px; 
-  background-image: url('assets/img/fondo.png');
+  background-image: url('../assets/img/fondo.png');
   background-size: contain;
   transform: translate(-50%, -50%);
   filter: blur(0px);
@@ -88,14 +88,6 @@ body {
   color: #333;
   border-radius: 30px;
 }
-
-/* .main-content {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 30px;
-  display: none;
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
-} */
 
 .barraRegistro {
   display: flex;
@@ -384,3 +376,8 @@ label {
   display: none;
 }
 
+#main-content {
+  height: 240px !important;
+  overflow: hidden;
+  overflow-y: scroll !important;
+}
