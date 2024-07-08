@@ -27,10 +27,13 @@ formLogin.addEventListener('submit', async (e) => {
   if (valid.length === 1) {
     console.log('mas de 1');
     console.log(path);
+    console.log(path === '/duerme-bien/');
     if (path === '/duerme-bien/') {
       console.log('siii');
       window.localStorage.setItem('tipo', valid[0].tipo)
       window.location.pathname = 'home.html'
+    } else {
+      console.log(path);
     }
   } else {
     alert('Usuario no existe')
