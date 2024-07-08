@@ -7,7 +7,7 @@ const formLogin = document.getElementById('formLogin')
 
 const { fetchedData, error } = await fetchData('empleados');
 console.log(fetchedData);
-const path = window.location.pathname
+let path = window.location.pathname
 console.log(path);
 
 console.log('aaaaaaaaaaa');
@@ -29,11 +29,12 @@ formLogin.addEventListener('submit', async (e) => {
     console.log(path);
     console.log(path === '/duerme-bien/');
     console.log('comprobando');
-    if (path === '/duerme-bien/') {
+    if (path === '/duerme-bien/' || path === '/') {
       console.log('siii');
       window.localStorage.setItem('tipo', valid[0].tipo)
       window.location.pathname = 'home.html'
     } else {
+      console.log('no salio el path');
       console.log(path);
     }
   } else {
