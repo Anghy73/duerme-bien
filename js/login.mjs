@@ -29,7 +29,7 @@ formLogin.addEventListener('submit', async (e) => {
     console.log(path);
     console.log(path === '/duerme-bien/');
     console.log('comprobando');
-    if (path === '/duerme-bien/' || path === '/') {
+    if (path === '/duerme-bien/' || path === '/' || path === '/index.html') {
       console.log('siii');
       window.localStorage.setItem('tipo', valid[0].tipo)
       window.location.pathname = '/duerme-bien/home.html'

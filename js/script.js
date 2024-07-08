@@ -17,6 +17,10 @@ const empladosLink = document.getElementById('empladosLink')
 const cerrarSesion = document.getElementById('cerrarSesion')
 const formEmpleados = document.getElementById('formEmpleados')
 const btnRegistrarEmpleado = document.getElementById('btnRegistrarEmpleado')
+const clientesLink = document.getElementById("clientesLink");
+const habitacionesLink = document.getElementById("habitacionesLink");
+const reservasLink = document.getElementById("reservasLink");
+const historialLink = document.getElementById("historialLink");
 
 btnAgregarEmpleado.addEventListener('click', () => {
     abrirModal(modalEmpleado)
@@ -64,6 +68,12 @@ const tipo = window.localStorage.getItem('tipo')
 if (tipo === 'Administrador') {
     btnAgregarEmpleado.style.display = 'flex'
     empladosLink.style.display = 'flex'
+
+    clientesLink.parentElement.style.display = 'none'
+    habitacionesLink.parentElement.style.display = 'none'
+    reservasLink.parentElement.style.display = 'none'
+    historialLink.parentElement.style.display = 'none'
+    btnAgregarReserva.style.display = 'none'
 } else {
     btnAgregarEmpleado.style.display = 'none'
     empladosLink.style.display = 'none'
@@ -73,7 +83,7 @@ const path = window.location.pathname
 
 cerrarSesion.addEventListener('click', () => {
     console.log(path);
-    if (path === '/duerme-bien/home.html') {
+    if (path === '/duerme-bien/home.html' || path === '/home.html') {
         window.localStorage.setItem('user', '')
         window.location.pathname = '/duerme-bien/'
     }
