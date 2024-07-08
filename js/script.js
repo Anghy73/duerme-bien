@@ -73,9 +73,9 @@ const path = window.location.pathname
 
 cerrarSesion.addEventListener('click', () => {
     console.log(path);
-    if (path === '/home.html') {
+    if (path === '/duerme-bien/home.html') {
         window.localStorage.setItem('user', '')
-        window.location.pathname = 'index.html'
+        window.location.pathname = '/duerme-bien/'
     }
 })
 
