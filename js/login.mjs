@@ -28,6 +28,7 @@ formLogin.addEventListener('submit', async (e) => {
     console.log('mas de 1');
     console.log(path);
     console.log(path === '/duerme-bien/');
+    console.log('comprobando');
     if (path === '/duerme-bien/') {
       console.log('siii');
       window.localStorage.setItem('tipo', valid[0].tipo)
