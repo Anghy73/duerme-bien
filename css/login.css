@@ -43,7 +43,7 @@ body {
     left: 50%;
     width: 200px;
     height: 200px; 
-    background-image: url('assets/img/fondo.png');
+    background-image: url('../assets/img/fondo.png');
     background-size: contain;
     transform: translate(-50%, -50%);
     filter: blur(0px);
