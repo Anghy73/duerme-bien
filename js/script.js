@@ -2,7 +2,7 @@ import { fetchData, insertData } from "./supabase.mjs"
 
 // Obtener referencias a los elementos del DOM
 const modalCliente = document.getElementById("modal-cliente")
-const btnAgregarCliente = document.getElementById("btnAgregarCliente")
+// const btnAgregarCliente = document.getElementById("btnAgregarCliente")
 const modalReserva = document.getElementById("modal-reserva")
 const btnAgregarReserva = document.getElementById("btnAgregarReserva")
 const spans = document.getElementsByClassName("close") // Asume que hay un span.close para cada modal
@@ -45,11 +45,6 @@ window.onclick = (event) => {
         formHabitaciones.innerHTML=''
         formReserva.reset()
     }
-}
-
-const closeContent = () => {
-    const mainContent = document.getElementById("main-content");
-    mainContent.style.display = "none";
 }
 
 // Verificar es de julio

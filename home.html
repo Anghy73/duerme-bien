@@ -21,13 +21,21 @@
             <ul class="nav">
                 <li><a href="#" id="clientesLink">Clientes</a></li>
                 <li><a href="#" id="habitacionesLink">Habitaciones</a></li>
-                <li><a href="#" id="reservasLink">Reservas</a></li>
-                <li><a href="#" id="historialLink">Historial</a></li>
+                <li><a href="#" id="reservasLink">Reservas en curso</a></li>
+                <li><a href="#" id="historialLink">Historial de reservas</a></li>
             </ul>
         </div>
 
+        <!-- Aqui se genera la tabla -->
         <div id="main-content" class="main-content">
-            <!-- Aquí se mostrará el contenido dinámico -->
+            <div class=" table-responsive rounded-3">
+                <table class="table table-bordered table-hover">
+                  <thead class="table-dark">
+                    <tr id="tableHead"></tr>
+                  </thead>
+                  <tbody id="tableBody"></tbody>
+                </table>
+              </div>
         </div>
 
         <div class="barraRegistro">
@@ -64,7 +72,7 @@
         <!-- Formulario Reserva Nueva -->
         <div id="modal-reserva" class="modal">
             <div class="modal-content">
-                <div class="modal-content-x">
+                <div class="card-header">
                     <span class="close">&times;</span>
                     <h3>Nueva Reserva</h3>
                 </div>
@@ -91,12 +99,12 @@
                                 <label for="pasajeros">Pasajeros:</label>
                                 <input type="number" id="pasajeros" name="pasajeros" required>
                             </div>
-        
+
                             <div>
                                 <label for="costo">Costo total:</label>
                                 <input type="number" id="costo" name="costo" required>
                             </div>
-        
+
                             <div>
                                 <label for="detalle">Detalle:</label>
                                 <textarea name="detalle" id="detalle"></textarea>
@@ -114,11 +122,14 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="js/crud.js" type="module"></script>
-    <script src="js/script.js" type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+    <script src="js/CRUD/create.js" type="module"></script>
+    <script src="js/CRUD/read.js" type="module"></script>
+    <script src="js/CRUD/update.js" type="module"></script>
+    <script src="js/CRUD/delete.js" type="module"></script>
+    <script src="js/script.js" type="module"></script>
 </body>
 
 </html>

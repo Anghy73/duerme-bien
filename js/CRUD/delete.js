@@ -1,0 +1,1 @@
+// Eliminar registros de la base de datos
