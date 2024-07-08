@@ -7,13 +7,14 @@ const formLogin = document.getElementById('formLogin')
 
 const { fetchedData, error } = await fetchData('empleados');
 console.log(fetchedData);
+const path = window.location.pathname
+console.log(path);
 
-formLogin.addEventListener('submit', (e) => {
+formLogin.addEventListener('submit', async (e) => {
   e.preventDefault()
   const {user, password} = Object.fromEntries(new FormData(e.target))
-  const path = window.location.pathname
 
-  const valid = fetchedData.filter(elem => {
+  const valid = await fetchedData.filter(elem => {
     if (user === elem.nombre && password === elem.clave) {
       return true
     } else {
