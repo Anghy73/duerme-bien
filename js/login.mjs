@@ -22,6 +22,8 @@ formLogin.addEventListener('submit', (e) => {
   });
 
   if (valid.length === 1) {
+    console.log('mas de 1');
+    console.log(path);
     if (path === '/index.html') {
       window.localStorage.setItem('tipo', valid[0].tipo)
       window.location.pathname = 'home.html'
