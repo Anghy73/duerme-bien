@@ -107,9 +107,11 @@ const generateTableHabitaciones = (habitacion) => {
 }
 
 const generateTableReserva = (reserva) => {
-    let table = '<table class="table"><tr><th>Fecha Fin</th><th>Pasajeros</th><th>Costo Total</th><th>Estado</th><th>Detalle</th></tr>';
+    let table = '<table class="table"><tr><th>ID</th><th>Cliente</th><th>Fecha Fin</th><th>Pasajeros</th><th>Costo Total</th><th>Estado</th><th>Detalle</th></tr>';
     reserva.forEach(reserva => {
         table += `<tr>
+                    <td>${reserva.codreserva}</td>
+                    <td>${reserva.fk_rutcliente}</td>
                     <td>${reserva.fecha_fin}</td>
                     <td>${reserva.pasajeros}</td>
                     <td>${reserva.costo_total}</td>

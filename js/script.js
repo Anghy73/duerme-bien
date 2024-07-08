@@ -1,4 +1,4 @@
-import { fetchData } from "./supabase.mjs"
+import { fetchData, insertData } from "./supabase.mjs"
 
 // Obtener referencias a los elementos del DOM
 const modalCliente = document.getElementById("modal-cliente")
@@ -132,7 +132,7 @@ btnLimpiar.addEventListener('click', () => {
     formReserva.reset()
 })
 
-btnRegistrar.addEventListener('click', () => {
+btnRegistrar.addEventListener('click', async () => {
     const rutcliente = document.getElementById('run').value
     const habitacionesElejidas = []
     const selectHabitaciones = document.getElementsByName('habitaciones')
@@ -144,6 +144,22 @@ btnRegistrar.addEventListener('click', () => {
     const pasajeros = document.getElementById('pasajeros').value
     const costoTotal = document.getElementById('costo').value
     const detalle = document.getElementById('detalle')
+
+    const datos = {
+        rutcliente,
+        habitacionesElejidas,
+        finEstadia,
+        pasajeros,
+        costoTotal,
+        detalle
+    }
+
+    const { error } = await insertData('reserva', {
+        codreserva: 1,
+        fecha_fin: finEstadia
+    });
+    console.log(error);
+
 
     console.log({
         rutcliente,
