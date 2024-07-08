@@ -15,6 +15,7 @@
     <div class="container">
         <div class="title">
             <h1>Hotel Duerme Bien</h1>
+            <button id="cerrarSesion">Cerrar Sesion</button>
         </div>
         <hr>
         <div class="header">
@@ -23,6 +24,7 @@
                 <li><a href="#" id="habitacionesLink">Habitaciones</a></li>
                 <li><a href="#" id="reservasLink">Reservas en curso</a></li>
                 <li><a href="#" id="historialLink">Historial de reservas</a></li>
+                <li><a href="#" id="empladosLink">Empleados</a></li>
             </ul>
         </div>
 
@@ -39,29 +41,45 @@
         </div>
 
         <div class="barraRegistro">
-            <!-- <button class="add-button" id="btnAgregarCliente">Registrar Cliente</button> -->
+            <button class="add-button" id="btnAgregarEmpleado">Registrar Empleado</button>
             <button class="add-button" id="btnAgregarReserva">Nueva Reserva</button>
         </div>
 
         <!-- Formulario Cliente Nuevo -->
-        <div id="modal-cliente" class="modal">
+        <div id="modal-empleado" class="modal">
             <div class="modal-content">
-                <span class="close">&times;</span>
-                <h3>Registrar Cliente</h3>
+                <div>
+                    <span class="close">&times;</span>
+                    <h3>Registrar Empleado</h3>
+                </div>
                 <hr>
                 </hr>
                 <form>
-                    <label for="run">Run:</label>
-                    <input type="text" id="run" name="run" required><br><br>
+                    <div>
+                        <label for="idE">ID</label>
+                        <input type="text" id="runE" name="runE" required><br><br>
+                    </div>
 
-                    <label for="nombre">Nombre:</label>
-                    <input type="text" id="nombre" name="nombre" required><br><br>
+                    <div>
+                        <label for="clave">Clave:</label>
+                        <input type="text" id="clave" name="clave" required><br><br>
+                    </div>
 
-                    <label for="apellido">Apellido:</label>
-                    <input type="text" id="apellido" name="apellido" required><br><br>
+                    <div>
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" required><br><br>
+                    </div>
 
-                    <label for="fono">Teléfono:</label>
-                    <input type="number" id="fono" name="fono" required><br><br>
+                    <div>
+                        <label for="apellido">Apellido:</label>
+                        <input type="text" id="apellido" name="apellido" required><br><br>
+                    </div>
+
+                    <div>
+                        <label for="tipo">Tipo:</label>
+                        <input type="text" id="tipo" name="tipo" required><br><br>
+                    </div>
+
 
                     <button type="reset">Limpiar</button>
                     <button type="button">Registrar</button>

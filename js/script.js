@@ -1,9 +1,11 @@
+
 import { fetchData, insertData } from "./supabase.mjs"
 
 // Obtener referencias a los elementos del DOM
 const modalCliente = document.getElementById("modal-cliente")
-// const btnAgregarCliente = document.getElementById("btnAgregarCliente")
+const btnAgregarEmpleado = document.getElementById("btnAgregarEmpleado")
 const modalReserva = document.getElementById("modal-reserva")
+const modalEmpleado = document.getElementById("modal-empleado")
 const btnAgregarReserva = document.getElementById("btnAgregarReserva")
 const spans = document.getElementsByClassName("close") // Asume que hay un span.close para cada modal
 const formHabitaciones = document.getElementById('form-habitaciones')
@@ -11,6 +13,12 @@ const addHabitaciones = document.getElementById('add-habitaciones')
 const btnRegistrar = document.getElementById('btnRegistrar')
 const btnLimpiar = document.getElementById('btnLimpiar')
 const formReserva = document.getElementById('formReserva')
+const empladosLink = document.getElementById('empladosLink')
+const cerrarSesion = document.getElementById('cerrarSesion')
+
+btnAgregarEmpleado.addEventListener('click', () => {
+    abrirModal(modalEmpleado)
+})
 
 // Función para abrir un modal específico
 const abrirModal = (modal) => {
@@ -31,6 +39,7 @@ btnAgregarReserva.onclick = () => {
 for (let i = 0; i < spans.length; i++) {
     spans[i].onclick = () => {
         cerrarModal(modalReserva);
+        cerrarModal(modalEmpleado);
         formHabitaciones.innerHTML=''
         formReserva.reset()
     }
@@ -46,6 +55,25 @@ window.onclick = (event) => {
         formReserva.reset()
     }
 }
+
+
+const user = window.localStorage.getItem('user')
+
+if (user === 'admin') {
+    btnAgregarEmpleado.style.display = 'flex'
+    empladosLink.style.display = 'flex'
+}
+
+const path = window.location.pathname
+
+cerrarSesion.addEventListener('click', () => {
+    console.log(path);
+    if (path === '/home.html') {
+        window.localStorage.setItem('user', '')
+        window.location.pathname = 'index.html'
+    }
+})
+
 
 // Verificar es de julio
 const verificar = (id) => {
