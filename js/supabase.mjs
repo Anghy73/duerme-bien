@@ -25,7 +25,7 @@ export async function fetchData(tableName, query = {}) {
 }
 
 // Función para actualizar datos
-export async function updateData(tableName, matchQuery, updateQuery) {
+export async function updateData(tableName, updateQuery, matchQuery) {
     const { data: updatedData, error } = await supabase
         .from(tableName)
         .update(updateQuery)

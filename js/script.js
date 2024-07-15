@@ -1,5 +1,5 @@
 
-import { fetchData, insertData } from "./supabase.mjs"
+import { fetchData, insertData, updateData } from "./supabase.mjs"
 
 // Obtener referencias a los elementos del DOM
 const modalCliente = document.getElementById("modal-cliente")
@@ -8,7 +8,8 @@ const modalReserva = document.getElementById("modal-reserva")
 const modalEmpleado = document.getElementById("modal-empleado")
 const btnAgregarReserva = document.getElementById("btnAgregarReserva")
 const spans = document.getElementsByClassName("close") // Asume que hay un span.close para cada modal
-const formHabitaciones = document.getElementById('form-habitaciones')
+const habitacionesD = document.getElementById('habitacionesD')
+const runD = document.getElementById('runD')
 const addHabitaciones = document.getElementById('add-habitaciones')
 const btnRegistrar = document.getElementById('btnRegistrar')
 const btnLimpiar = document.getElementById('btnLimpiar')
@@ -21,6 +22,7 @@ const clientesLink = document.getElementById("clientesLink");
 const habitacionesLink = document.getElementById("habitacionesLink");
 const reservasLink = document.getElementById("reservasLink");
 const historialLink = document.getElementById("historialLink");
+const date = new Date();
 
 btnAgregarEmpleado.addEventListener('click', () => {
     abrirModal(modalEmpleado)
@@ -38,7 +40,7 @@ const cerrarModal = (modal) => {
 
 btnAgregarReserva.onclick = () => {
     abrirModal(modalReserva)
-    generateHabitaciones()
+    generateselects()
 }
 
 // Asignar evento onclick a los spans para cerrar los modales
@@ -46,7 +48,8 @@ for (let i = 0; i < spans.length; i++) {
     spans[i].onclick = () => {
         cerrarModal(modalReserva);
         cerrarModal(modalEmpleado);
-        formHabitaciones.innerHTML=''
+        habitacionesD.innerHTML=''
+        runD.innerHTML=''
         formReserva.reset()
     }
 }
@@ -57,7 +60,8 @@ window.onclick = (event) => {
         cerrarModal(modalCliente)
     } else if (event.target == modalReserva) {
         cerrarModal(modalReserva)
-        formHabitaciones.innerHTML=''
+        habitacionesD.innerHTML=''
+        runD.innerHTML=''
         formReserva.reset()
     }
 }
@@ -126,44 +130,43 @@ const valida = (e) => {
 }
 
 
-addHabitaciones.addEventListener('click', () => generateHabitaciones())
+// addHabitaciones.addEventListener('click', () => )
 
-let numH = 0
+// let numH = 0
 
-const generateHabitaciones = async () => {
-    numH += 1
+const generateselects = async () => {
+    const fetchedDataH = await fetchData('habitacion');
+    const hDisponibles = fetchedDataH.fetchedData.filter(item => item.estado == 'Disponible')
+    const fetchedDataC = await fetchData('cliente');
 
-    const { fetchedData, error } = await fetchData('habitacion');
-    const hDisponibles = fetchedData.filter(item => item.estado == 'Disponible')
-
-    let options = ''
+    let optionsH = ''
     hDisponibles.forEach(item => {
-        options += `<option value=${item.idhabitacion}>${item.idhabitacion}</option>`
+        optionsH += `<option value=${item.idhabitacion}>${item.idhabitacion}</option>`
     })
 
-    let group = `
-        <div class="group-habitaciones" id=${numH}>
-            <label for="habitacion">Habitacion</label>
-            <div class="select-content">
-                <select name="habitaciones">
-                    ${options}
-                </select>
-            </div>
-            <div id="btnDelH" class="del-habitacion" data-id=${numH}>X</div>
+    let optionsR = ''
+    fetchedDataC.fetchedData.forEach(item => {
+        optionsR += `<option value=${item.rutcliente}>${item.rutcliente}</option>`
+    })
+
+    let groupH = `
+        <div class="select-content">
+            <select id="habitaciones" name="">
+                ${optionsH}
+            </select>
         </div>
     `
 
-    formHabitaciones.innerHTML += group
+    let groupR = `
+        <div class="select-content">
+            <select id="runes" name="">
+                ${optionsR}
+            </select>
+        </div>
+    `
 
-    const btnDelH = document.querySelectorAll('#btnDelH')
-
-    btnDelH.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const id = e.target.getAttribute('data-id')
-            const elem = document.getElementById(id)
-            elem.style.cssText = 'display: none !important;'
-        })
-    })
+    habitacionesD.innerHTML += groupH
+    runD.innerHTML += groupR
 }
 
 btnLimpiar.addEventListener('click', () => {
@@ -171,37 +174,55 @@ btnLimpiar.addEventListener('click', () => {
 })
 
 btnRegistrar.addEventListener('click', async () => {
-    const rutcliente = document.getElementById('run').value
-    const habitacionesElejidas = []
-    const selectHabitaciones = document.getElementsByName('habitaciones')
-    selectHabitaciones.forEach(item => {
-        habitacionesElejidas.push(item.value)
-    })
-
+    const rutcliente = document.getElementById('runes').value
+    const habitacion = document.getElementById('habitaciones').value
     const finEstadia = document.getElementById('fechaFin').value
     const pasajeros = document.getElementById('pasajeros').value
     const costoTotal = document.getElementById('costo').value
-    const detalle = document.getElementById('detalle')
+    const detalle = document.getElementById('detalle').value
 
     const datos = {
-        rutcliente,
-        habitacionesElejidas,
-        finEstadia,
+        fk_rutcliente: rutcliente,
+        fk_idhabitacion: habitacion,
+        fecha_fin: finEstadia,
         pasajeros,
-        costoTotal,
+        costo_total: costoTotal,
         detalle
     }
+    const time = Date.now().toString()
+    const cod = parseInt(time.substring(time.length, 9))
+    // || habitacion === ''
 
-    const { error } = await insertData('reserva', {
-        codreserva: 1,
-        fecha_fin: finEstadia
-    });
-    console.log(error);
+    if (pasajeros.trim() === '' || costoTotal.trim() === '' || detalle.trim() === '' || rutcliente === '' || finEstadia === '') {
+        return alert('faltan datos por completar')
+    } else {
+        const fetchedDataH = await fetchData('habitacion');
+        // console.log(fetchedDataH.fetchedData)
+        const habitacionSelect = await fetchedDataH.fetchedData.filter(item => item.idhabitacion === habitacion)
+        // console.log(habitacionSelect);
+        const cupos = habitacionSelect[0].cupos
 
+        if (pasajeros <= cupos) {
+            if (costoTotal.length <= 4) {
+                console.log('aprobado');
+                await insertData('reserva', {
+                    codreserva: cod,
+                    ...datos
+                });
+    
+                const { data, error } = await updateData('habitacion', { estado: 'Ocupada' }, {'idhabitacion': habitacion})
+                formReserva.reset()
+            } else {
+                return alert(`El Costo Total esta mal`)
+            }
+        } else {
+            return alert(`la cantidad de pasajeros disponible es de ${cupos}`)
+        }
+    }
 
     console.log({
         rutcliente,
-        habitacionesElejidas,
+        habitacion,
         finEstadia,
         pasajeros,
         costoTotal,
@@ -232,11 +253,3 @@ btnRegistrarEmpleado.addEventListener('click', async () => {
         formEmpleados.reset()
     }
 })
-
-
-// funcion para eliminar un empleado
-
-// empladosLink.addEventListener('click', async () => {
-//     const button = document.querySelectorAll('button')
-//     console.log(button);
-// })
