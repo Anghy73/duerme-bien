@@ -1,9 +1,14 @@
 import { fetchData } from "./supabase.mjs"
 
-const CREDENTIAL_NAME = 'admin'
-const CREDENTIAL_PASSWORD = 'admin123'
+// const CREDENTIAL_NAME = 'admin'
+// const CREDENTIAL_PASSWORD = 'admin123'
 
 const formLogin = document.getElementById('formLogin')
+const btnContra = document.getElementById('btnContra')
+
+btnContra.addEventListener('click', () => {
+  return alert('comuníquese con un administrador para realizar el cambio de contraseña')
+})
 
 const { fetchedData, error } = await fetchData('empleados');
 console.log(fetchedData);
