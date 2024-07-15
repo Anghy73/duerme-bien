@@ -232,3 +232,11 @@ btnRegistrarEmpleado.addEventListener('click', async () => {
         formEmpleados.reset()
     }
 })
+
+
+// funcion para eliminar un empleado
+
+// empladosLink.addEventListener('click', async () => {
+//     const button = document.querySelectorAll('button')
+//     console.log(button);
+// })

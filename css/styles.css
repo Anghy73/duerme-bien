@@ -381,3 +381,25 @@ label {
   overflow: hidden;
   overflow-y: scroll !important;
 }
+
+button {
+  position: relative;
+  z-index: 2 !important;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: transparent;
+  }
+}
+
+svg {
+  z-index: -1;
+}
+path {
+  z-index: -1;
+}
