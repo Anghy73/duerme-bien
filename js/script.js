@@ -194,6 +194,7 @@ btnRegistrar.addEventListener('click', async () => {
     // || habitacion === ''
 
     if (pasajeros.trim() === '' || costoTotal.trim() === '' || detalle.trim() === '' || rutcliente === '' || finEstadia === '') {
+        
         return alert('faltan datos por completar')
     } else {
         const fetchedDataH = await fetchData('habitacion');

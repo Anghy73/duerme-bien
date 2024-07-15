@@ -403,3 +403,10 @@ svg {
 path {
   z-index: -1;
 }
+
+.error {
+  background-color: #ff000077;
+  margin-top: 4px;
+  padding: 0 4px;
+  border-radius: 5px;
+}

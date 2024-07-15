@@ -111,18 +111,19 @@
                             </div>
                             <div>
                                 <label for="fechaFin">Fin estadia:</label>
-                                <input type="date" id="fechaFin" name="fechaFin" required>
+                                <input type="date" id="fechaFin" name="fechaFin" required onblur="validarRegistro(event.target)">
+                                <div id="fechaFinE"></div>
                             </div>
                         </div>
                         <div class="form__items">
                             <div>
                                 <label for="pasajeros">Pasajeros:</label>
-                                <input type="text" id="pasajeros" name="pasajeros" required maxlength="2">
+                                <input type="text" id="pasajeros" name="pasajeros" required maxlength="2" onblur="validarRegistro(event.target)">
                             </div>
 
                             <div>
                                 <label for="costo">Costo total:</label>
-                                <input type="number" id="costo" name="costo" required max="1000" min="100">
+                                <input type="number" id="costo" name="costo" required max="1000" min="100" onblur="validarRegistro(event.target)">
                             </div>
 
                             <div>
@@ -141,6 +142,7 @@
             </div>
         </div>
     </div>
+    <script src="./js/validations.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
