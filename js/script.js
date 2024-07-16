@@ -27,6 +27,10 @@ btnAgregarEmpleado.addEventListener("click", () => {
   abrirModal(modalEmpleado);
 });
 
+btnAgregarCliente.addEventListener("click", () => {
+  abrirModal(modalCliente);
+});
+
 // Función para abrir un modal específico
 const abrirModal = (modal) => {
   modal.style.display = "flex";
@@ -47,6 +51,7 @@ for (let i = 0; i < spans.length; i++) {
   spans[i].onclick = () => {
     cerrarModal(modalReserva);
     cerrarModal(modalEmpleado);
+    cerrarModal(modalCliente);
     habitacionesD.innerHTML = "";
     runD.innerHTML = "";
     limpiar()
@@ -64,7 +69,7 @@ window.onclick = (event) => {
     runD.innerHTML = "";
     limpiar()
     formReserva.reset();
-  }
+  } 
 };
 
 const tipo = window.localStorage.getItem("tipo");
