@@ -15,8 +15,6 @@ console.log(fetchedData);
 let path = window.location.pathname
 console.log(path);
 
-console.log('aaaaaaaaaaa');
-
 formLogin.addEventListener('submit', async (e) => {
   e.preventDefault()
   const {user, password} = Object.fromEntries(new FormData(e.target))

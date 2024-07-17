@@ -6,6 +6,7 @@ const btnAgregarEmpleado = document.getElementById("btnAgregarEmpleado");
 const modalReserva = document.getElementById("modal-reserva");
 const modalEmpleado = document.getElementById("modal-empleado");
 const btnAgregarReserva = document.getElementById("btnAgregarReserva");
+const btnAgregarCliente = document.getElementById("btnAgregarCliente");
 const spans = document.getElementsByClassName("close"); // Asume que hay un span.close para cada modal
 const habitacionesD = document.getElementById("habitacionesD");
 const runD = document.getElementById("runD");
@@ -88,6 +89,7 @@ if (tipo === "Administrador") {
   reservasLink.parentElement.style.display = "none";
   historialLink.parentElement.style.display = "none";
   btnAgregarReserva.style.display = "none";
+  btnAgregarCliente.style.display = 'none'
 } else {
   btnAgregarEmpleado.style.display = "none";
   empladosLink.style.display = "none";
@@ -311,6 +313,13 @@ btnRegistrarCliente.addEventListener('click', async (e) => {
   const apellidoE = document.getElementById("apellidoC").value;
   const contactE = document.getElementById("contactC").value;
 
+  const datos = {
+    rutcliente: rutE,
+    nombre: nombreE,
+    apellido: apellidoE,
+    fono: `+56 9 ${contactE}`
+  }
+
   if (
     rutE.trim() === "" ||
     nombreE.trim() === "" ||
@@ -325,22 +334,15 @@ btnRegistrarCliente.addEventListener('click', async (e) => {
     );
 
     if (rutExistente.length === 0) {
-      if (contactE.trim().length <= 12 && contactE.trim().length >= 9) {
+      if (contactE.trim().length <= 10 && contactE.trim().length >= 8) {
 
         if (validarErroresFormulario().length >= 1) {
           return alert('hay un campo incorrecto')
         } else {
           console.log("aprobado");
-          // await insertData("reserva", {
-          //   codreserva: cod,
-          //   ...datos,
-          // });
-  
-          // const { data, error } = await updateData(
-          //   "habitacion",
-          //   { estado: "Ocupada" },
-          //   { idhabitacion: habitacion }
-          // );
+          await insertData("cliente", {
+            ...datos,
+          });
   
           limpiar()
           formReserva.reset();
