@@ -4,7 +4,7 @@ import { fetchData } from "./supabase.mjs"
 // const CREDENTIAL_PASSWORD = 'admin123'
 
 const formLogin = document.getElementById('formLogin')
-const btnContra = document.getElementById('btnContra')
+const btnContra = document.getElementById('btnRecuperarContraseña')
 
 btnContra.addEventListener('click', () => {
   return alert('comuníquese con un administrador para realizar el cambio de contraseña')
