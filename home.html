@@ -56,33 +56,37 @@
                 <hr>
                 </hr>
                 <form id="formCliente">
-                    <div>
+                    <!-- <div>
                         <label for="idE">ID</label>
                         <input type="text" id="idE" name="idE" required><br><br>
-                    </div>
+                    </div> -->
 
                     <div>
                         <label for="rut">Rut</label>
-                        <input type="text" id="rutE" name="rut" required><br><br>
+                        <input type="text" id="rutC" name="rut" required onblur="validarCliente(event.target)">
+                        <div id="rutE"></div>
                     </div>
 
                     <div>
                         <label for="nombre">Nombre:</label>
-                        <input type="text" id="nombreE" name="nombre" required><br><br>
+                        <input type="text" id="nombreC" name="nombre" required onblur="validarCliente(event.target)">
+                        <div id="nombreE"></div>
                     </div>
 
                     <div>
                         <label for="apellido">Apellido:</label>
-                        <input type="text" id="apellidoE" name="apellido" required><br><br>
+                        <input type="text" id="apellidoC" name="apellido" required onblur="validarCliente(event.target)">
+                        <div id="apellidoE"></div>
                     </div>
 
                     <div>
                         <label for="contact">Nº Contacto:</label>
-                        <input type="number" id="contactE" name="contact" required><br><br>
+                        <input type="number" id="contactC" name="contact" required onblur="validarCliente(event.target)">
+                        <div id="contactE"></div>
                     </div>
 
 
-                    <button type="reset">Limpiar</button>
+                    <button type="reset" id="btnLimpiar">Limpiar</button>
                     <button id="btnRegistrarCliente" type="button">Registrar</button>
                 </form>
             </div>
@@ -97,10 +101,10 @@
                 <hr>
                 </hr>
                 <form id="formEmpleados">
-                    <div>
+                    <!-- <div>
                         <label for="idE">ID</label>
                         <input type="text" id="idE" name="idE" required><br><br>
-                    </div>
+                    </div> -->
 
                     <div>
                         <label for="clave">Clave:</label>
@@ -119,7 +123,8 @@
 
                     <div>
                         <label for="tipo">Tipo:</label>
-                        <input type="text" id="tipo" name="tipo" required><br><br>
+                        <input type="text" id="tipo" name="tipo" required>
+                        <br><br>
                     </div>
 
 

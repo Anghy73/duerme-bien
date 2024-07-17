@@ -9,7 +9,7 @@ const btnAgregarReserva = document.getElementById("btnAgregarReserva");
 const spans = document.getElementsByClassName("close"); // Asume que hay un span.close para cada modal
 const habitacionesD = document.getElementById("habitacionesD");
 const runD = document.getElementById("runD");
-const addHabitaciones = document.getElementById("add-habitaciones");
+// const addHabitaciones = document.getElementById("add-habitaciones");
 const btnRegistrar = document.getElementById("btnRegistrar");
 const btnLimpiar = document.getElementById("btnLimpiar");
 const formReserva = document.getElementById("formReserva");
@@ -21,6 +21,9 @@ const clientesLink = document.getElementById("clientesLink");
 const habitacionesLink = document.getElementById("habitacionesLink");
 const reservasLink = document.getElementById("reservasLink");
 const historialLink = document.getElementById("historialLink");
+const formCliente = document.getElementById("formCliente");
+const btnRegistrarCliente = document.getElementById('btnRegistrarCliente')
+
 const date = new Date();
 
 btnAgregarEmpleado.addEventListener("click", () => {
@@ -63,6 +66,8 @@ for (let i = 0; i < spans.length; i++) {
 window.onclick = (event) => {
   if (event.target == modalCliente) {
     cerrarModal(modalCliente);
+    limpiar()
+    formReserva.reset();
   } else if (event.target == modalReserva) {
     cerrarModal(modalReserva);
     habitacionesD.innerHTML = "";
@@ -178,12 +183,12 @@ btnLimpiar.addEventListener("click", limpiar);
 
 function limpiar() {
   const errores = document.querySelectorAll(".error");
-  console.log(errores);
   errores.forEach((err) => {
     err.textContent = "";
     err.classList.remove("error");
   });
   formReserva.reset();
+  formCliente.reset();
 }
 
 btnRegistrar.addEventListener("click", async () => {
@@ -296,3 +301,67 @@ function validarErroresFormulario() {
   console.log(errores);
   return errores
 }
+
+
+// Cliente
+
+btnRegistrarCliente.addEventListener('click', async (e) => {
+  const rutE = document.getElementById("rutC").value;
+  const nombreE = document.getElementById("nombreC").value;
+  const apellidoE = document.getElementById("apellidoC").value;
+  const contactE = document.getElementById("contactC").value;
+
+  if (
+    rutE.trim() === "" ||
+    nombreE.trim() === "" ||
+    apellidoE.trim() === "" ||
+    contactE.trim() === ""
+  ) {
+    return alert("faltan datos por completar");
+  } else {
+    const fetchedDataC = await fetchData("cliente");
+    const rutExistente = await fetchedDataC.fetchedData.filter(
+      (item) => item.rutcliente === parseInt(rutE)
+    );
+
+    if (rutExistente.length === 0) {
+      if (contactE.trim().length <= 12 && contactE.trim().length >= 9) {
+
+        if (validarErroresFormulario().length >= 1) {
+          return alert('hay un campo incorrecto')
+        } else {
+          console.log("aprobado");
+          // await insertData("reserva", {
+          //   codreserva: cod,
+          //   ...datos,
+          // });
+  
+          // const { data, error } = await updateData(
+          //   "habitacion",
+          //   { estado: "Ocupada" },
+          //   { idhabitacion: habitacion }
+          // );
+  
+          limpiar()
+          formReserva.reset();
+        }
+      } else {
+        return alert(`El número de contacto esta mal`);
+      }
+    } else {
+      return alert(`El rut ya existe`);
+    }
+  }
+
+
+
+  console.log({
+    rutE,
+    nombreE,
+    apellidoE,
+    contactE
+  });
+})
+
+
+// validar rut

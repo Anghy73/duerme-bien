@@ -86,6 +86,53 @@ function validarRegistro(target) {
   }
 }
 
+function validarCliente(target) {
+
+  if (target.id == "rutC") {
+    const rutE = document.getElementById("rutE");
+    if (target.value.trim() === '') {
+      rutE.textContent = 'Dato incompleto'
+      rutE.classList.add('error')
+    } else {
+      rutE.textContent = "";
+      rutE.classList.remove("error");
+    }
+  }
+
+  if (target.id == 'nombreC') {
+    const nombreE = document.getElementById("nombreE");
+    if (target.value.trim() === '') {
+      nombreE.textContent = 'Dato incompleto'
+      nombreE.classList.add('error')
+    } else {
+      nombreE.textContent = "";
+      nombreE.classList.remove("error");
+    }
+  }
+
+  if (target.id == 'apellidoC') {
+    const apellidoE = document.getElementById("apellidoE");
+    if (target.value.trim() === '') {
+      apellidoE.textContent = 'Dato incompleto'
+      apellidoE.classList.add('error')
+    } else {
+      apellidoE.textContent = "";
+      apellidoE.classList.remove("error");
+    }
+  }
+
+  if (target.id == 'contactC') {
+    const contactE = document.getElementById("contactE");
+    if (target.value.trim() === '') {
+      contactE.textContent = 'Dato incompleto'
+      contactE.classList.add('error')
+    } else {
+      contactE.textContent = "";
+      contactE.classList.remove("error");
+    }
+  }
+}
+
 // if (id == "run") {
 //   if (!validaRun(input.value.trim())) {
 //     input.classList.add("is-invalid");
