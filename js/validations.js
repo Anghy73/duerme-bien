@@ -133,6 +133,42 @@ function validarCliente(target) {
   }
 }
 
+function validarEmpleado(target) {
+  if (target.id == "nombreT") {
+    const nombreE = document.getElementById("nombreET");
+    console.log(nombreE);
+    if (target.value.trim() === '') {
+      nombreE.textContent = 'Dato incompleto'
+      nombreE.classList.add('error')
+    } else {
+      nombreE.textContent = "";
+      nombreE.classList.remove("error");
+    }
+  }
+
+  if (target.id == 'apellidoT') {
+    const apellidoE = document.getElementById("apellidoET");
+    if (target.value.trim() === '') {
+      apellidoE.textContent = 'Dato incompleto'
+      apellidoE.classList.add('error')
+    } else {
+      apellidoE.textContent = "";
+      apellidoE.classList.remove("error");
+    }
+  }
+
+  if (target.id == 'claveT') {
+    const claveE = document.getElementById("claveET");
+    if (target.value.trim() === '') {
+      claveE.textContent = 'Dato incompleto'
+      claveE.classList.add('error')
+    } else {
+      claveE.textContent = "";
+      claveE.classList.remove("error");
+    }
+  }
+}
+
 // if (id == "run") {
 //   if (!validaRun(input.value.trim())) {
 //     input.classList.add("is-invalid");

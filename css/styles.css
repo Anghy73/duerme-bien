@@ -411,6 +411,11 @@ path {
   border-radius: 5px;
 }
 
+#formEmpleados {
+  display: flex;
+  gap: 1rem;
+}
+
 #modal-cliente {
   display: none;
   justify-content: center;

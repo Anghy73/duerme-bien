@@ -12,7 +12,9 @@ const habitacionesD = document.getElementById("habitacionesD");
 const runD = document.getElementById("runD");
 // const addHabitaciones = document.getElementById("add-habitaciones");
 const btnRegistrar = document.getElementById("btnRegistrar");
-const btnLimpiar = document.getElementById("btnLimpiar");
+const btnLimpiarET = document.getElementById("btnLimpiarET");
+const btnLimpiarC = document.getElementById("btnLimpiarC");
+const btnLimpiarR = document.getElementById("btnLimpiarR");
 const formReserva = document.getElementById("formReserva");
 const empladosLink = document.getElementById("empladosLink");
 const cerrarSesion = document.getElementById("cerrarSesion");
@@ -26,6 +28,11 @@ const formCliente = document.getElementById("formCliente");
 const btnRegistrarCliente = document.getElementById('btnRegistrarCliente')
 
 const date = new Date();
+
+const generateID = () => {
+  const time = Date.now().toString()
+  return parseInt(time.substring(time.length, 9))
+}
 
 btnAgregarEmpleado.addEventListener("click", () => {
   abrirModal(modalEmpleado);
@@ -60,6 +67,8 @@ for (let i = 0; i < spans.length; i++) {
     runD.innerHTML = "";
     limpiar()
     formReserva.reset();
+    formEmpleados.reset();
+    formCliente.reset();
   };
 }
 
@@ -68,13 +77,17 @@ window.onclick = (event) => {
   if (event.target == modalCliente) {
     cerrarModal(modalCliente);
     limpiar()
-    formReserva.reset();
+    formCliente.reset();
   } else if (event.target == modalReserva) {
     cerrarModal(modalReserva);
     habitacionesD.innerHTML = "";
     runD.innerHTML = "";
     limpiar()
     formReserva.reset();
+  } else if (event.target == modalEmpleado) {
+    cerrarModal(modalEmpleado);
+    limpiar()
+    formEmpleados.reset();
   } 
 };
 
@@ -181,16 +194,21 @@ const generateselects = async () => {
   runD.innerHTML += groupR;
 };
 
-btnLimpiar.addEventListener("click", limpiar);
+btnLimpiarET.addEventListener("click", limpiar);
+btnLimpiarC.addEventListener("click", limpiar);
+btnLimpiarR.addEventListener("click", limpiar);
 
 function limpiar() {
   const errores = document.querySelectorAll(".error");
+  console.log('hola');
+  console.log(errores);
   errores.forEach((err) => {
     err.textContent = "";
     err.classList.remove("error");
   });
   formReserva.reset();
   formCliente.reset();
+  formEmpleados.reset();
 }
 
 btnRegistrar.addEventListener("click", async () => {
@@ -273,27 +291,35 @@ btnRegistrar.addEventListener("click", async () => {
   });
 });
 
+// Empleado
+
 btnRegistrarEmpleado.addEventListener("click", async () => {
-  const idE = document.getElementById("idE").value;
-  const clave = document.getElementById("clave").value;
-  const nombreE = document.getElementById("nombreE").value;
-  const apellidoE = document.getElementById("apellidoE").value;
-  const tipo = document.getElementById("tipo").value;
+  const idE = generateID();
+  const nombreT = document.getElementById("nombreT").value;
+  const apellidoT = document.getElementById("apellidoT").value;
+  const claveT = document.getElementById("claveT").value;
+  const tipoT = document.getElementById("tipoT").value;
 
-  const { error } = await insertData("empleados", {
+  const datos = {
     rutempleado: idE,
-    clave,
-    nombre: nombreE,
-    apellido: apellidoE,
-    tipo,
-  });
+    clave: claveT,
+    nombre: nombreT,
+    apellido: apellidoT,
+    tipo: tipoT,
+  }
+  console.log(datos);
 
-  if (error) {
-    alert("ha ocurrido un error");
-    formEmpleados.reset();
+  if (
+    nombreT.trim() === "" ||
+    apellidoT.trim() === "" ||
+    claveT.trim() === "" ||
+    tipoT.trim() === ""
+  ) {
+    return alert("faltan datos por completar");
   } else {
-    alert("Todo correcto");
-    formEmpleados.reset();
+    const { error } = await insertData("empleados", {
+      ...datos
+    });
   }
 });
 
@@ -354,8 +380,6 @@ btnRegistrarCliente.addEventListener('click', async (e) => {
       return alert(`El rut ya existe`);
     }
   }
-
-
 
   console.log({
     rutE,

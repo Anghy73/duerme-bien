@@ -86,7 +86,7 @@
                     </div>
 
 
-                    <button type="reset" id="btnLimpiar">Limpiar</button>
+                    <button type="reset" id="btnLimpiarC">Limpiar</button>
                     <button id="btnRegistrarCliente" type="button">Registrar</button>
                 </form>
             </div>
@@ -105,30 +105,34 @@
                         <label for="idE">ID</label>
                         <input type="text" id="idE" name="idE" required><br><br>
                     </div> -->
+                    
+                    <div>
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombreT" name="nombre" required onblur="validarEmpleado(event.target)">
+                        <div id="nombreET"></div>
+                    </div>
+                    
+                    <div>
+                        <label for="apellido">Apellido:</label>
+                        <input type="text" id="apellidoT" name="apellido" required onblur="validarEmpleado(event.target)">
+                        <div id="apellidoET"></div>
+                    </div>
 
                     <div>
                         <label for="clave">Clave:</label>
-                        <input type="text" id="clave" name="clave" required><br><br>
+                        <input type="text" id="claveT" name="clave" required onblur="validarEmpleado(event.target)">
+                        <div id="claveET"></div>
                     </div>
-
-                    <div>
-                        <label for="nombre">Nombre:</label>
-                        <input type="text" id="nombreE" name="nombre" required><br><br>
-                    </div>
-
-                    <div>
-                        <label for="apellido">Apellido:</label>
-                        <input type="text" id="apellidoE" name="apellido" required><br><br>
-                    </div>
-
+                    
                     <div>
                         <label for="tipo">Tipo:</label>
-                        <input type="text" id="tipo" name="tipo" required>
-                        <br><br>
+                        <!-- <input type="text" id="tipoE" name="tipo" required> -->
+                        <select name="" id="tipoT">
+                            <option value="Administrador">Administrador</option>
+                            <option value="Encargado">Encargado</option>
+                        </select>
                     </div>
-
-
-                    <button type="reset">Limpiar</button>
+                    <button type="reset" id="btnLimpiarET">Limpiar</button>
                     <button id="btnRegistrarEmpleado" type="button">Registrar</button>
                 </form>
             </div>
@@ -185,7 +189,7 @@
                     </div>
 
                     <div class="buttons-content">
-                        <button id="btnLimpiar" class="btn" type="reset">Limpiar</button>
+                        <button id="btnLimpiarR" class="btn" type="reset">Limpiar</button>
                         <button id="btnRegistrar" class="btn" type="button">Registrar</button>
                     </div>
 
