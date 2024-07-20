@@ -28,6 +28,13 @@ const historialLink = document.getElementById("historialLink");
 const formCliente = document.getElementById("formCliente");
 const btnRegistrarCliente = document.getElementById('btnRegistrarCliente')
 
+const btnActualizarCliente = document.getElementById('btnActualizarCliente')
+btnActualizarCliente.style.display = 'none'
+
+// Editar
+
+const formEditCliente = document.getElementById('formEditCliente')
+
 const date = new Date();
 
 // Valores de las habitaciones
@@ -45,6 +52,7 @@ btnAgregarEmpleado.addEventListener("click", () => {
 
 btnAgregarCliente.addEventListener("click", () => {
   abrirModal(modalCliente);
+
 });
 
 // Función para abrir un modal específico
@@ -55,6 +63,8 @@ const abrirModal = (modal) => {
 // Función para cerrar modales
 const cerrarModal = (modal) => {
   modal.style.display = "none";
+  btnActualizarCliente.style.display = 'none'
+  btnRegistrarCliente.style.display = 'block'
 };
 
 btnAgregarReserva.onclick = () => {
@@ -172,7 +182,6 @@ btnLimpiarR.addEventListener("click", limpiar);
 
 function limpiar() {
   const errores = document.querySelectorAll(".error");
-  console.log('hola');
   console.log(errores);
   errores.forEach((err) => {
     err.textContent = "";
@@ -393,7 +402,7 @@ btnRegistrarCliente.addEventListener('click', async (e) => {
     );
 
     if (rutExistente.length === 0) {
-      if (contactE.trim().length <= 10 && contactE.trim().length >= 8) {
+      if (contactE.trim().length === 8) {
 
         if (validarErroresFormulario().length >= 1) {
           return alert('hay un campo incorrecto')

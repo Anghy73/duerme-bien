@@ -87,7 +87,6 @@ function validarRegistro(target) {
 }
 
 function validarCliente(target) {
-
   if (target.id == "rutC") {
     const rutE = document.getElementById("rutE");
     if (target.value.trim() === '') {
