@@ -70,7 +70,7 @@ const eliminarReserva = (btns) => {
                 confirmButtonText: "Eliminar"
             }).then(async (result) => {
                 if (result.isConfirmed) {
-                    const borradoOk = await deleteData('reserva', { codreserva: reservaID });
+                    await deleteData('reserva', { codreserva: reservaID });
                     Swal.fire({
                         title: "Eliminado!",
                         text: "Su registro ha sido eliminado",
@@ -79,7 +79,7 @@ const eliminarReserva = (btns) => {
 
                     tableHead.innerHTML = '';
                     tableBody.innerHTML = '';
-                    const { fetchedData, error } = await fetchData('reserva');
+                    const { fetchedData } = await fetchData('reserva');
                     const { head: tableH, body: tableB } = generateTableReserva(fetchedData);
                     tableHead.innerHTML = tableH;
                     tableBody.innerHTML = tableB;
@@ -91,3 +91,4 @@ const eliminarReserva = (btns) => {
         })
     })
 }
+

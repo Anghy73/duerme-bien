@@ -136,23 +136,15 @@ const generateselects = async () => {
   );
   const fetchedDataC = await fetchData("cliente");
 
-  let optionsH = "";
-  hDisponibles.forEach((item) => {
-    optionsH += `<option value=${item.idhabitacion}>${item.idhabitacion}</option>`;
-  });
-
-  let optionsR = "";
+  let optionsR = `<option value="" selected disabled>Seleccione rut cliente</option>`;
   fetchedDataC.fetchedData.forEach((item) => {
     optionsR += `<option value=${item.rutcliente}>${item.rutcliente}</option>`;
   });
 
-  let groupH = `
-        <div class="select-content">
-            <select id="habitaciones" name="" onblur="validarRegistro(event.target)">
-                ${optionsH}
-            </select>
-        </div>
-    `;
+  let optionsH = `<option value="" selected disabled>Seleccione habitación</option>`;
+  hDisponibles.forEach((item) => {
+    optionsH += `<option value=${item.idhabitacion}>${item.idhabitacion}</option>`;
+  });
 
   let groupR = `
         <div class="select-content">
@@ -162,8 +154,17 @@ const generateselects = async () => {
         </div>
     `;
 
-  habitacionesD.innerHTML += groupH;
+  let groupH = `
+        <div class="select-content">
+            <select id="habitaciones" name="" onblur="validarRegistro(event.target)">
+                ${optionsH}
+            </select>
+        </div>
+    `;
+
+
   runD.innerHTML += groupR;
+  habitacionesD.innerHTML += groupH;
 };
 
 btnLimpiarET.addEventListener("click", limpiar);
@@ -172,7 +173,6 @@ btnLimpiarR.addEventListener("click", limpiar);
 
 function limpiar() {
   const errores = document.querySelectorAll(".error");
-  console.log('hola');
   console.log(errores);
   errores.forEach((err) => {
     err.textContent = "";
@@ -184,11 +184,16 @@ function limpiar() {
 }
 
 btnRegistrar.addEventListener("click", async () => {
-  const rutcliente = document.getElementById("runes").value;
+  const rutEmpleado = "8748"
+  const rutCliente = document.getElementById("runes").value;
   const habitacion = document.getElementById("habitaciones").value;
+  const date = new Date();
+  const actualFecha = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate()}`;
   const inicioEstadia = document.getElementById("fechaInicio").value;
   const finEstadia = document.getElementById("fechaFin").value;
   const pasajeros = document.getElementById("pasajeros").value;
+  let costoTotal = 0;
+  let estado = "En curso";
   const detalle = document.getElementById("detalle").value;
 
   // Convertir fechas de inicio y fin a objetos Date usando los valores
@@ -206,35 +211,32 @@ btnRegistrar.addEventListener("click", async () => {
   const cupos = habitacionSelect[0].cupos;
 
   // Calcular el costo total usando la fórmula proporcionada
-  let costoTotal = (valorBase + valorCupo * cupos) * diasEstadia;
-
-  const date = new Date();
-  // console.log(date);
-  const actualFecha = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate()}`
-  console.log(finEstadia.value);
-  console.log(actualFecha);
+  costoTotal = (valorBase + valorCupo * cupos) * diasEstadia;
 
   const datos = {
-    fk_rutcliente: rutcliente,
+    fk_rutempleado: rutEmpleado,
+    fk_rutcliente: rutCliente,
     fk_idhabitacion: habitacion,
+    fecha_reserva: actualFecha,
     fecha_inicio: inicioEstadia,
     fecha_fin: finEstadia,
-    pasajeros,
+    pasajeros: pasajeros,
     costo_total: costoTotal,
-    detalle
+    estado: estado,
+    detalle: detalle
   };
   const time = Date.now().toString();
   const cod = parseInt(time.substring(time.length, 9));
 
 
   if (
-    pasajeros.trim() === "" ||
-    rutcliente === "" ||
+    pasajeros === "" ||
+    rutCliente === "" ||
     inicioEstadia === "" ||
     finEstadia === "" ||
     habitacion === ''
   ) {
-    return alert("faltan datos por completar");
+    return alert("Faltan datos por completar");
   } else {
     const fetchedDataH = await fetchData("habitacion");
     const habitacionSelect = await fetchedDataH.fetchedData.filter(
@@ -246,13 +248,14 @@ btnRegistrar.addEventListener("click", async () => {
       if (validarErroresFormulario().length >= 1) {
         return alert('hay un campo incorrecto')
       } else {
-        console.log("aprobado");
+        console.log("Guardando reserva...");
         await insertData("reserva", {
           codreserva: cod,
           ...datos,
         });
 
-        const { data, error } = await updateData(
+        console.log("Cambiando estado habitación...");
+        await updateData(
           "habitacion",
           { estado: "Ocupada" },
           { idhabitacion: habitacion }
@@ -265,16 +268,6 @@ btnRegistrar.addEventListener("click", async () => {
       return alert(`la cantidad de pasajeros disponible es de ${cupos}`);
     }
   }
-
-  console.log({
-    rutcliente,
-    habitacion,
-    inicioEstadia,
-    finEstadia,
-    pasajeros,
-    costoTotal,
-    detalle,
-  });
 });
 
 // Esto es para que el costo aparezca automaticamente en el formulario de reserva
@@ -326,7 +319,7 @@ btnRegistrar.addEventListener("click", async () => {
 
 // Empleado
 
-btnRegistrarEmpleado.addEventListener("click", async () => {
+btnAgregarEmpleado.addEventListener("click", async () => {
   const idE = generateID();
   const nombreT = document.getElementById("nombreT").value;
   const apellidoT = document.getElementById("apellidoT").value;
@@ -366,7 +359,7 @@ function validarErroresFormulario() {
 
 // Cliente
 
-btnRegistrarCliente.addEventListener('click', async (e) => {
+btnRegistrarCliente.addEventListener('click', async () => {
   const rutE = document.getElementById("rutC").value;
   const nombreE = document.getElementById("nombreC").value;
   const apellidoE = document.getElementById("apellidoC").value;
@@ -376,7 +369,7 @@ btnRegistrarCliente.addEventListener('click', async (e) => {
     rutcliente: rutE,
     nombre: nombreE,
     apellido: apellidoE,
-    fono: `+56 9 ${contactE}`
+    fono: `${contactE}`
   }
 
   if (
@@ -385,7 +378,7 @@ btnRegistrarCliente.addEventListener('click', async (e) => {
     apellidoE.trim() === "" ||
     contactE.trim() === ""
   ) {
-    return alert("faltan datos por completar");
+    return alert("Faltan datos por completar");
   } else {
     const fetchedDataC = await fetchData("cliente");
     const rutExistente = await fetchedDataC.fetchedData.filter(
@@ -393,10 +386,10 @@ btnRegistrarCliente.addEventListener('click', async (e) => {
     );
 
     if (rutExistente.length === 0) {
-      if (contactE.trim().length <= 10 && contactE.trim().length >= 8) {
+      if (contactE.trim().length == 9) {
 
         if (validarErroresFormulario().length >= 1) {
-          return alert('hay un campo incorrecto')
+          return alert('Hay un campo incorrecto')
         } else {
           console.log("aprobado");
           await insertData("cliente", {
@@ -407,7 +400,7 @@ btnRegistrarCliente.addEventListener('click', async (e) => {
           formReserva.reset();
         }
       } else {
-        return alert(`El número de contacto esta mal`);
+        return alert(`El número de teléfono debe tener 9 dígitos`);
       }
     } else {
       return alert(`El rut ya existe`);

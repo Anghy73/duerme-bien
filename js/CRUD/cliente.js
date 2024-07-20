@@ -53,6 +53,7 @@ const generateTableclientes = (clientes) => {
     return { head, body };
 }
 
+// Eliminar cliente
 const eliminarCliente = (btns) => {
     btns.forEach(btn => {
         btn.addEventListener('click', async (e) => {
@@ -82,7 +83,7 @@ const eliminarCliente = (btns) => {
 
                     tableHead.innerHTML = '';
                     tableBody.innerHTML = '';
-                    const { fetchedData, error } = await fetchData('cliente');
+                    const { fetchedData } = await fetchData('cliente');
                     const { head: tableH, body: tableB } = generateTableclientes(fetchedData);
                     tableHead.innerHTML = tableH;
                     tableBody.innerHTML = tableB;
@@ -94,3 +95,4 @@ const eliminarCliente = (btns) => {
         })
     })
 }
+
