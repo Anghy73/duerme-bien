@@ -16,7 +16,7 @@ const btnLimpiarET = document.getElementById("btnLimpiarET");
 const btnLimpiarC = document.getElementById("btnLimpiarC");
 const btnLimpiarR = document.getElementById("btnLimpiarR");
 const formReserva = document.getElementById("formReserva");
-const empladosLink = document.getElementById("empladosLink");
+const empleadosLink = document.getElementById("empleadosLink");
 const cerrarSesion = document.getElementById("cerrarSesion");
 const formEmpleados = document.getElementById("formEmpleados");
 const btnRegistrarEmpleado = document.getElementById("btnRegistrarEmpleado");
@@ -95,7 +95,7 @@ const tipo = window.localStorage.getItem("tipo");
 
 if (tipo === "Administrador") {
   btnAgregarEmpleado.style.display = "flex";
-  empladosLink.style.display = "flex";
+  empleadosLink.style.display = "flex";
 
   clientesLink.parentElement.style.display = "none";
   habitacionesLink.parentElement.style.display = "none";
@@ -105,7 +105,7 @@ if (tipo === "Administrador") {
   btnAgregarCliente.style.display = 'none'
 } else {
   btnAgregarEmpleado.style.display = "none";
-  empladosLink.style.display = "none";
+  empleadosLink.style.display = "none";
 }
 
 const path = window.location.pathname;
