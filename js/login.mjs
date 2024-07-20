@@ -7,7 +7,7 @@ const formLogin = document.getElementById('formLogin')
 const btnContra = document.getElementById('btnRecuperarContraseña')
 
 btnContra.addEventListener('click', () => {
-  return alert('comuníquese con un administrador para realizar el cambio de contraseña')
+  return alert('Comuníquese con un administrador para realizar el cambio de contraseña')
 })
 
 const { fetchedData, error } = await fetchData('empleados');
