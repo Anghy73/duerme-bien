@@ -379,7 +379,7 @@ btnRegistrarCliente.addEventListener('click', async () => {
     rutcliente: rutE,
     nombre: nombreE,
     apellido: apellidoE,
-    fono: `${contactE}`
+    fono: `+56 9 ${contactE}`
   }
 
   if (
