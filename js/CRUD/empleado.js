@@ -47,7 +47,6 @@ const generateTableEmpleados = (emp) => {
                     </td>
                 </tr>`;
     });
-
     return { head, body };
 }
 
