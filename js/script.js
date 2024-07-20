@@ -89,7 +89,7 @@ window.onclick = (event) => {
     cerrarModal(modalEmpleado);
     limpiar()
     formEmpleados.reset();
-  } 
+  }
 };
 
 const tipo = window.localStorage.getItem("tipo");
@@ -239,7 +239,7 @@ btnRegistrar.addEventListener("click", async () => {
   const time = Date.now().toString();
   const cod = parseInt(time.substring(time.length, 9));
 
-  
+
   if (
     pasajeros.trim() === "" ||
     costoTotal.trim() === "" ||
@@ -266,13 +266,13 @@ btnRegistrar.addEventListener("click", async () => {
             codreserva: cod,
             ...datos,
           });
-  
+
           const { data, error } = await updateData(
             "habitacion",
             { estado: "Ocupada" },
             { idhabitacion: habitacion }
           );
-  
+
           limpiar()
           formReserva.reset();
         }
@@ -372,7 +372,7 @@ btnRegistrarCliente.addEventListener('click', async (e) => {
           await insertData("cliente", {
             ...datos,
           });
-  
+
           limpiar()
           formReserva.reset();
         }

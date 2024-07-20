@@ -17,7 +17,7 @@ console.log(path);
 
 formLogin.addEventListener('submit', async (e) => {
   e.preventDefault()
-  const {user, password} = Object.fromEntries(new FormData(e.target))
+  const { user, password } = Object.fromEntries(new FormData(e.target))
 
   const valid = await fetchedData.filter(elem => {
     if (user === elem.nombre && password === elem.clave) {
