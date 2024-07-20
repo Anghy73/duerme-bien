@@ -30,16 +30,18 @@ const generateTableHistorial = (hist) => {
     const head = '<th class="col-1">ID</th><th>Cliente</th><th>Habitación</th><th>Fecha Inicio</th><th>Fecha Fin</th><th>Pasajeros</th><th>Pago</th><th>Detalles</th>';
     let body = '';
     hist.forEach(reg => {
-        body += `<tr>
-                    <td>${reg.codreserva}</td>
-                    <td>${reg.fk_rutcliente}</td>
-                    <td>${reg.fk_idhabitacion}</td>
-                    <td>${reg.fecha_inicio}</td>
-                    <td>${reg.fecha_fin}</td>
-                    <td>${reg.pasajeros}</td>
-                    <td>$ ${reg.costo_total}</td>
-                    <td>${reg.detalle}</td>
-                </tr>`;
+        if (reg.estado === 'Finalizada') {
+            body += `<tr>
+                        <td>${reg.codreserva}</td>
+                        <td>${reg.fk_rutcliente}</td>
+                        <td>${reg.fk_idhabitacion}</td>
+                        <td>${reg.fecha_inicio}</td>
+                        <td>${reg.fecha_fin}</td>
+                        <td>${reg.pasajeros}</td>
+                        <td>$ ${reg.costo_total}</td>
+                        <td>${reg.detalle}</td>
+                    </tr>`;
+        }
     });
     return { head, body };
 };
