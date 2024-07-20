@@ -2,6 +2,7 @@ import { fetchData, insertData, updateData } from "./supabase.mjs";
 
 // Obtener referencias a los elementos del DOM
 const modalCliente = document.getElementById("modal-cliente");
+// const btnAgregarEmpleado = document.getElementById("btnAgregarEmpleado");
 const btnAgregarEmpleado = document.getElementById("btnAgregarEmpleado");
 const modalReserva = document.getElementById("modal-reserva");
 const modalEmpleado = document.getElementById("modal-empleado");
@@ -16,10 +17,10 @@ const btnLimpiarET = document.getElementById("btnLimpiarET");
 const btnLimpiarC = document.getElementById("btnLimpiarC");
 const btnLimpiarR = document.getElementById("btnLimpiarR");
 const formReserva = document.getElementById("formReserva");
-const empladosLink = document.getElementById("empladosLink");
+const empleadosLink = document.getElementById("empleadosLink");
 const cerrarSesion = document.getElementById("cerrarSesion");
 const formEmpleados = document.getElementById("formEmpleados");
-const btnRegistrarEmpleado = document.getElementById("btnRegistrarEmpleado");
+// const btnRegistrarEmpleado = document.getElementById("btnRegistrarEmpleado");
 const clientesLink = document.getElementById("clientesLink");
 const habitacionesLink = document.getElementById("habitacionesLink");
 const reservasLink = document.getElementById("reservasLink");
@@ -94,8 +95,10 @@ window.onclick = (event) => {
 const tipo = window.localStorage.getItem("tipo");
 
 if (tipo === "Administrador") {
+  console.log(' si admin');
+  // btnRegistrarEmpleado.style.display = "flex";
   btnAgregarEmpleado.style.display = "flex";
-  empladosLink.style.display = "flex";
+  empleadosLink.style.display = "flex";
 
   clientesLink.parentElement.style.display = "none";
   habitacionesLink.parentElement.style.display = "none";
@@ -105,7 +108,7 @@ if (tipo === "Administrador") {
   btnAgregarCliente.style.display = 'none'
 } else {
   btnAgregarEmpleado.style.display = "none";
-  empladosLink.style.display = "none";
+  empleadosLink.style.display = "none";
 }
 
 const path = window.location.pathname;
