@@ -24,7 +24,7 @@
                 <li><a href="#" id="habitacionesLink">Habitaciones</a></li>
                 <li><a href="#" id="reservasLink">Reservas en curso</a></li>
                 <li><a href="#" id="historialLink">Historial de reservas</a></li>
-                <li><a href="#" id="empladosLink">Empleados</a></li>
+                <li><a href="#" id="empleadosLink">Empleados</a></li>
             </ul>
         </div>
 
@@ -32,12 +32,12 @@
         <div id="main-content" class="main-content">
             <div class=" table-responsive rounded-3">
                 <table class="table table-bordered table-hover">
-                  <thead class="table-dark">
-                    <tr id="tableHead"></tr>
-                  </thead>
-                  <tbody id="tableBody"></tbody>
+                    <thead class="table-dark">
+                        <tr id="tableHead"></tr>
+                    </thead>
+                    <tbody id="tableBody"></tbody>
                 </table>
-              </div>
+            </div>
         </div>
 
         <div class="barraRegistro">
@@ -75,13 +75,15 @@
 
                     <div>
                         <label for="apellido">Apellido:</label>
-                        <input type="text" id="apellidoC" name="apellido" required onblur="validarCliente(event.target)">
+                        <input type="text" id="apellidoC" name="apellido" required
+                            onblur="validarCliente(event.target)">
                         <div id="apellidoE"></div>
                     </div>
 
                     <div>
-                        <label for="contact">Nº Contacto:</label>
-                        <input type="number" id="contactC" name="contact" required onblur="validarCliente(event.target)">
+                        <label for="contact">Teléfono:</label>
+                        <input type="number" id="contactC" name="contact" required
+                            onblur="validarCliente(event.target)">
                         <div id="contactE"></div>
                     </div>
 
@@ -105,16 +107,17 @@
                         <label for="idE">ID</label>
                         <input type="text" id="idE" name="idE" required><br><br>
                     </div> -->
-                    
+
                     <div>
                         <label for="nombre">Nombre:</label>
                         <input type="text" id="nombreT" name="nombre" required onblur="validarEmpleado(event.target)">
                         <div id="nombreET"></div>
                     </div>
-                    
+
                     <div>
                         <label for="apellido">Apellido:</label>
-                        <input type="text" id="apellidoT" name="apellido" required onblur="validarEmpleado(event.target)">
+                        <input type="text" id="apellidoT" name="apellido" required
+                            onblur="validarEmpleado(event.target)">
                         <div id="apellidoET"></div>
                     </div>
 
@@ -123,7 +126,7 @@
                         <input type="text" id="claveT" name="clave" required onblur="validarEmpleado(event.target)">
                         <div id="claveET"></div>
                     </div>
-                    
+
                     <div>
                         <label for="tipo">Tipo:</label>
                         <!-- <input type="text" id="tipoE" name="tipo" required> -->
@@ -164,20 +167,23 @@
                             </div>
                             <div>
                                 <label for="fechaFin">Fin estadia:</label>
-                                <input type="date" id="fechaFin" name="fechaFin" required onblur="validarRegistro(event.target)">
+                                <input type="date" id="fechaFin" name="fechaFin" required
+                                    onblur="validarRegistro(event.target)">
                                 <div id="fechaFinE"></div>
                             </div>
                         </div>
                         <div class="form__items">
                             <div>
                                 <label for="pasajeros">Pasajeros:</label>
-                                <input type="text" id="pasajeros" name="pasajeros" required maxlength="2" onblur="validarRegistro(event.target)">
+                                <input type="text" id="pasajeros" name="pasajeros" required maxlength="2"
+                                    onblur="validarRegistro(event.target)">
                                 <div id="pasajerosE"></div>
                             </div>
 
                             <div>
                                 <label for="costo">Costo total:</label>
-                                <input type="number" id="costo" name="costo" required max="1000" min="100" onblur="validarRegistro(event.target)">
+                                <input type="number" id="costo" name="costo" required max="1000" min="100"
+                                    onblur="validarRegistro(event.target)">
                                 <div id="costoE"></div>
                             </div>
 
@@ -203,10 +209,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-    <script src="js/CRUD/create.js" type="module"></script>
-    <script src="js/CRUD/read.js" type="module"></script>
-    <script src="js/CRUD/update.js" type="module"></script>
-    <script src="js/CRUD/delete.js" type="module"></script>
+    <script src="js/CRUD/cliente.js" type="module"></script>
+    <script src="js/CRUD/empleado.js" type="module"></script>
+    <script src="js/CRUD/habitacion.js" type="module"></script>
+    <script src="js/CRUD/reserva.js" type="module"></script>
+    <script src="js/CRUD/historial.js" type="module"></script>
     <script src="js/script.js" type="module"></script>
     <script>
     </script>
@@ -214,4 +221,3 @@
 </body>
 
 </html>
-

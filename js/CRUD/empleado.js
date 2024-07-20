@@ -1,15 +1,12 @@
-// Consulta de datos de la base de datos y generación de tablas
-import { deleteData, fetchData } from '../supabase.mjs';
+import { deleteData, fetchData } from '../supabase.mjs'
 
-// Cargar el contenido de la página
 document.addEventListener("DOMContentLoaded", function () {
-    const empladosLink = document.getElementById("empladosLink");
+    const empleadosLink = document.getElementById("empleadosLink");
     const tableHead = document.getElementById("tableHead");
     const tableBody = document.getElementById("tableBody");
     const mainContent = document.getElementById("main-content");
 
-    // Tabla Empleados
-    empladosLink.onclick = async function () {
+    empleadosLink.onclick = async function () {
         const { fetchedData, error } = await fetchData('empleados');
 
         if (error) {
@@ -25,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
         tableBody.innerHTML = tableB;
 
         const btns = tableBody.querySelectorAll('.btn.btnEliminarEmpleado')
-        eliminarEmplado(btns)
+        eliminarEmpleado(btns)
 
         mainContent.style.display = "block";
     }
@@ -52,11 +49,9 @@ const generateTableEmpleados = (emp) => {
     });
 
     return { head, body };
-};
+}
 
-// funcion para eliminar empleados
-
-function eliminarEmplado(btns) {
+const eliminarEmpleado = (btns) => {
     console.log('si');
     btns.forEach(btn => {
         btn.addEventListener('click', async (e) => {
@@ -88,7 +83,7 @@ function eliminarEmplado(btns) {
                     tableBody.innerHTML = tableB;
 
                     const btns = tableBody.querySelectorAll('.btn.btnEliminarEmpleado')
-                    eliminarEmplado(btns)
+                    eliminarEmpleado(btns)
                 }
             })
         })
