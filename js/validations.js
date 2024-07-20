@@ -1,4 +1,4 @@
-function validarRegistro(target) {
+const validarRegistro = (target) => {
   console.log(target);
   console.log(target.value);
 
@@ -14,7 +14,6 @@ function validarRegistro(target) {
     }
 
     if (fechaActual > fechaFin) {
-      // fechaFinE.textContent = 'La fecha de fin no puede ser el mismo dia o un dia antes de la reservasion'
       fechaFinE.textContent = "La fecha de fin es incorrecta";
       fechaFinE.classList.add("error");
     } else {
@@ -76,22 +75,26 @@ function validarRegistro(target) {
     const runE = document.getElementById("runE");
 
     if (target.value.trim() === "") {
-      habitacionE.textContent = "No hay clientes";
-      habitacionE.classList.add("error");
+      runE.textContent = "No hay clientes";
+      runE.classList.add("error");
       return;
     } else {
-      habitacionE.textContent = "";
-      habitacionE.classList.remove("error");
+      runE.textContent = "";
+      runE.classList.remove("error");
     }
   }
-}
+};
 
-function validarCliente(target) {
+const validarCliente = (target) => {
   if (target.id == "rutC") {
     const rutE = document.getElementById("rutE");
     if (target.value.trim() === '') {
       rutE.textContent = 'Dato incompleto'
       rutE.classList.add('error')
+    }
+    if (!validaRun(target.value.trim())) {
+      rutE.textContent = "El run no es válido";
+      rutE.classList.add("error");
     } else {
       rutE.textContent = "";
       rutE.classList.remove("error");
@@ -130,9 +133,9 @@ function validarCliente(target) {
       contactE.classList.remove("error");
     }
   }
-}
+};
 
-function validarEmpleado(target) {
+const validarEmpleado = (target) => {
   if (target.id == "nombreT") {
     const nombreE = document.getElementById("nombreET");
     console.log(nombreE);
@@ -166,11 +169,4 @@ function validarEmpleado(target) {
       claveE.classList.remove("error");
     }
   }
-}
-
-// if (id == "run") {
-//   if (!validaRun(input.value.trim())) {
-//     input.classList.add("is-invalid");
-//     div.innerHTML = "<span>El run no es válido</span>";
-//   }
-// }
+};
