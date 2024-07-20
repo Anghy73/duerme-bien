@@ -30,6 +30,10 @@ const btnRegistrarCliente = document.getElementById('btnRegistrarCliente')
 
 const date = new Date();
 
+// Valores de las habitaciones
+const valorBase = 220000;
+const valorCupo = 20000;
+
 const generateID = () => {
   const time = Date.now().toString()
   return parseInt(time.substring(time.length, 9))
@@ -121,41 +125,6 @@ cerrarSesion.addEventListener("click", () => {
   }
 });
 
-// Verificar es de julio
-const verificar = (id) => {
-  const input = document.getElementById(id);
-  const div = document.getElementById("e-" + id);
-  input.classList.remove("is-valid", "is-invalid");
-
-  const alertaInput = (mensaje) => {
-    // input.classList.remove('is-valid')
-    // input.classList.add('is-invalid')
-    div.innerHTML = `<span class="badge bg-danger">${mensaje}</span>`;
-  };
-
-  if (input.value.trim() == "") {
-    alertaInput("El campo es obligatorio");
-  } else {
-    input.classList.add("is-valid");
-    div.innerHTML = "";
-    // Verificaciones específicas
-    if (id == "run") {
-      if ((input.value = 0)) {
-        console.log("Funca");
-        alertaInput("Run no válido");
-      }
-    }
-  }
-};
-
-const valida = (e) => {
-  document.querySelectorAll("required").forEach((item) => {
-    verificar(item.id);
-  });
-  // Evita que el formulario se envie
-  e.preventDefault();
-};
-
 // addHabitaciones.addEventListener('click', () => )
 
 // let numH = 0
@@ -217,11 +186,29 @@ function limpiar() {
 btnRegistrar.addEventListener("click", async () => {
   const rutcliente = document.getElementById("runes").value;
   const habitacion = document.getElementById("habitaciones").value;
-  const finEstadia = document.getElementById("fechaFin")
+  const inicioEstadia = document.getElementById("fechaInicio").value;
+  const finEstadia = document.getElementById("fechaFin").value;
   const pasajeros = document.getElementById("pasajeros").value;
-  const costoTotal = document.getElementById("costo").value;
   const detalle = document.getElementById("detalle").value;
 
+  // Convertir fechas de inicio y fin a objetos Date usando los valores
+  const fechaInicio = new Date(inicioEstadia);
+  const fechaFin = new Date(finEstadia);
+
+  // Calcular la diferencia en días
+  const diferenciaTiempo = fechaFin.getTime() - fechaInicio.getTime();
+  const diasEstadia = diferenciaTiempo / (1000 * 3600 * 24);
+
+  const fetchedDataH = await fetchData("habitacion");
+  const habitacionSelect = fetchedDataH.fetchedData.filter(
+    (item) => item.idhabitacion === habitacion
+  );
+  const cupos = habitacionSelect[0].cupos;
+
+  // Calcular el costo total usando la fórmula proporcionada
+  let costoTotal = (valorBase + valorCupo * cupos) * diasEstadia;
+
+  const date = new Date();
   // console.log(date);
   const actualFecha = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate()}`
   console.log(finEstadia.value);
@@ -230,11 +217,11 @@ btnRegistrar.addEventListener("click", async () => {
   const datos = {
     fk_rutcliente: rutcliente,
     fk_idhabitacion: habitacion,
-    fecha_fin: finEstadia.value,
+    fecha_inicio: inicioEstadia,
+    fecha_fin: finEstadia,
     pasajeros,
     costo_total: costoTotal,
-    detalle,
-    fecha_inicio: actualFecha
+    detalle
   };
   const time = Date.now().toString();
   const cod = parseInt(time.substring(time.length, 9));
@@ -242,8 +229,8 @@ btnRegistrar.addEventListener("click", async () => {
 
   if (
     pasajeros.trim() === "" ||
-    costoTotal.trim() === "" ||
     rutcliente === "" ||
+    inicioEstadia === "" ||
     finEstadia === "" ||
     habitacion === ''
   ) {
@@ -256,28 +243,23 @@ btnRegistrar.addEventListener("click", async () => {
     const cupos = habitacionSelect[0].cupos;
 
     if (pasajeros <= cupos) {
-      if (costoTotal.length <= 4) {
-
-        if (validarErroresFormulario().length >= 1) {
-          return alert('hay un campo incorrecto')
-        } else {
-          console.log("aprobado");
-          await insertData("reserva", {
-            codreserva: cod,
-            ...datos,
-          });
-
-          const { data, error } = await updateData(
-            "habitacion",
-            { estado: "Ocupada" },
-            { idhabitacion: habitacion }
-          );
-
-          limpiar()
-          formReserva.reset();
-        }
+      if (validarErroresFormulario().length >= 1) {
+        return alert('hay un campo incorrecto')
       } else {
-        return alert(`El Costo Total esta mal`);
+        console.log("aprobado");
+        await insertData("reserva", {
+          codreserva: cod,
+          ...datos,
+        });
+
+        const { data, error } = await updateData(
+          "habitacion",
+          { estado: "Ocupada" },
+          { idhabitacion: habitacion }
+        );
+
+        limpiar()
+        formReserva.reset();
       }
     } else {
       return alert(`la cantidad de pasajeros disponible es de ${cupos}`);
@@ -287,12 +269,60 @@ btnRegistrar.addEventListener("click", async () => {
   console.log({
     rutcliente,
     habitacion,
+    inicioEstadia,
     finEstadia,
     pasajeros,
     costoTotal,
     detalle,
   });
 });
+
+// Esto es para que el costo aparezca automaticamente en el formulario de reserva
+
+// document.getElementById('habitaciones').addEventListener('change', actualizarCostoTotal);
+// document.getElementById('fechaInicio').addEventListener('input', actualizarCostoTotal);
+// document.getElementById('fechaFin').addEventListener('input', actualizarCostoTotal);
+
+// async function actualizarCostoTotal() {
+//   // Obtiene los valores de los campos relevantes
+//   const habitacion = document.getElementById('habitaciones').value;
+//   const inicioEstadia = document.getElementById('fechaInicio').value;
+//   const finEstadia = document.getElementById('fechaFin').value;
+
+//   // Verifica si alguno de los campos está vacío
+//   if (!habitacion || !inicioEstadia || !finEstadia) {
+//     return; // Sale de la función si algún campo está vacío
+//   }
+
+//   // Convierte las fechas de inicio y fin a objetos Date
+//   const fechaInicio = new Date(inicioEstadia);
+//   const fechaFin = new Date(finEstadia);
+
+//   // Calcula la diferencia en días
+//   const diferenciaTiempo = fechaFin.getTime() - fechaInicio.getTime();
+//   const diasEstadia = diferenciaTiempo / (1000 * 3600 * 24);
+
+//   // Comprobar que diasEstadia sea positivo
+//   if (diasEstadia < 0) {
+//     console.log("La fecha de fin debe ser posterior a la fecha de inicio.");
+//     return; // Sale de la función si la diferencia de días no es válida
+//   }
+
+//   // Obtén cupos de la habitación
+//   const fetchedDataH = await fetchData('habitacion');
+//   const habitacionSelect = fetchedDataH.fetchedData.find(item => item.idhabitacion === habitacion);
+//   const cupos = habitacionSelect ? habitacionSelect.cupos : 0;
+
+//   if (diasEstadia == 0) {
+//     diasEstadia = 1;
+//   }
+
+//   // Calcula el costo total
+//   const costoTotal = (valorBase + valorCupo * cupos) * diasEstadia;
+
+//   // Actualiza el valor del elemento <h1> con ID "costo"
+//   document.getElementById('costo').textContent = `Costo total: $${costoTotal.toFixed(2)}`;
+// }
 
 // Empleado
 
