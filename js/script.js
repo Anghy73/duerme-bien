@@ -387,7 +387,7 @@ btnRegistrarCliente.addEventListener('click', async () => {
     rutcliente: rutE,
     nombre: nombreE,
     apellido: apellidoE,
-    fono: `+56 9 ${contactE}`
+    fono: contactE
   }
 
   console.log(datos);
@@ -406,7 +406,7 @@ btnRegistrarCliente.addEventListener('click', async () => {
     );
 
     if (rutExistente.length === 0) {
-      if (contactE.trim().length === 8) {
+      if (contactE.trim().length === 9) {
 
         if (validarErroresFormulario().length >= 1) {
           return alert('Hay un campo incorrecto')
@@ -420,7 +420,7 @@ btnRegistrarCliente.addEventListener('click', async () => {
           formReserva.reset();
         }
       } else {
-        return alert(`El número de teléfono debe tener 8 dígitos`);
+        return alert(`El número de teléfono debe tener 9 dígitos`);
       }
     } else {
       return alert(`El rut ya existe`);
