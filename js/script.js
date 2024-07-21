@@ -410,7 +410,7 @@ btnRegistrarCliente.addEventListener('click', async () => {
           formReserva.reset();
         }
       } else {
-        return alert(`El número de teléfono debe tener 9 dígitos`);
+        return alert(`El número de teléfono debe tener 8 dígitos`);
       }
     } else {
       return alert(`El rut ya existe`);
