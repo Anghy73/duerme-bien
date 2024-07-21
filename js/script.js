@@ -15,6 +15,7 @@ const runD = document.getElementById("runD");
 const btnRegistrar = document.getElementById("btnRegistrar");
 const btnLimpiarET = document.getElementById("btnLimpiarET");
 const btnLimpiarC = document.getElementById("btnLimpiarC");
+const btnLimpiarH = document.getElementById("btnLimpiarH");
 const btnLimpiarR = document.getElementById("btnLimpiarR");
 const formReserva = document.getElementById("formReserva");
 const empleadosLink = document.getElementById("empleadosLink");
@@ -30,6 +31,8 @@ const btnRegistrarCliente = document.getElementById('btnRegistrarCliente')
 
 const btnActualizarCliente = document.getElementById('btnActualizarCliente')
 btnActualizarCliente.style.display = 'none'
+
+const modalEditarHabitacion = document.getElementById('modal-editar-habitacion')
 
 // Editar
 
@@ -78,6 +81,7 @@ for (let i = 0; i < spans.length; i++) {
     cerrarModal(modalReserva);
     cerrarModal(modalEmpleado);
     cerrarModal(modalCliente);
+    cerrarModal(modalEditarHabitacion);
     habitacionesD.innerHTML = "";
     runD.innerHTML = "";
     limpiar()
@@ -103,6 +107,9 @@ window.onclick = (event) => {
     cerrarModal(modalEmpleado);
     limpiar()
     formEmpleados.reset();
+  } else if (event.target == modalEditarHabitacion) {
+    cerrarModal(modalEditarHabitacion);
+    limpiar()
   }
 };
 
@@ -180,6 +187,7 @@ const generateselects = async () => {
 btnLimpiarET.addEventListener("click", limpiar);
 btnLimpiarC.addEventListener("click", limpiar);
 btnLimpiarR.addEventListener("click", limpiar);
+btnLimpiarH.addEventListener("click", limpiar);
 
 function limpiar() {
   const errores = document.querySelectorAll(".error");

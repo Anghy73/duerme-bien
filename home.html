@@ -82,7 +82,7 @@
 
                     <div>
                         <label for="contactC">Teléfono:</label>
-                        <input type="number" id="contactC" name="contact" required
+                        <input type="number" id="contactC" name="contact" required min="0"
                             onblur="validarCliente(event.target)">
                         <div id="contactE"></div>
                     </div>
@@ -94,51 +94,6 @@
                 </form>
             </div>
         </div>
-
-        <!-- Editar Cliente -->
-
-        <!-- <div id="formEditCliente" class="modal">
-            <div class="modal-content">
-                <div>
-                    <span class="close">&times;</span>
-                    <h3>Registrar Cliente</h3>
-                </div>
-                <hr>
-                </hr>
-                <form id="formCliente">
-
-                    <div>
-                        <label for="rut">Rut</label>
-                        <input type="text" id="rutC" name="rut" required onblur="validarCliente(event.target)">
-                        <div id="rutE"></div>
-                    </div>
-
-                    <div>
-                        <label for="nombre">Nombre:</label>
-                        <input type="text" id="nombreC" name="nombre" required onblur="validarCliente(event.target)">
-                        <div id="nombreE"></div>
-                    </div>
-
-                    <div>
-                        <label for="apellido">Apellido:</label>
-                        <input type="text" id="apellidoC" name="apellido" required
-                            onblur="validarCliente(event.target)">
-                        <div id="apellidoE"></div>
-                    </div>
-
-                    <div>
-                        <label for="contact">Teléfono:</label>
-                        <input type="number" id="contactC" name="contact" required
-                            onblur="validarCliente(event.target)">
-                        <div id="contactE"></div>
-                    </div>
-
-
-                    <button type="reset" id="btnLimpiarC">Limpiar</button>
-                    <button id="btnRegistrarCliente" type="button">Registrar</button>
-                </form>
-            </div>
-        </div> -->
 
         <!-- Formulario Empleado -->
         <div id="modal-empleado" class="modal">
@@ -250,6 +205,50 @@
                 </form>
             </div>
         </div>
+
+        <div id="modal-editar-habitacion" class="modal">
+            <div class="modal-content">
+                <div>
+                    <span class="close">&times;</span>
+                    <h3>Actualizar Habitación</h3>
+                </div>
+                <hr>
+                </hr>
+                <form id="formEditarHabitacion">
+
+                    <div>
+                        <label for="Estado">Estado:</label>
+                        <select name="" id="selectsEstadosH">
+                            <option value="Disponible">Disponible</option>
+                            <option value="Mantenimiento">Mantenimiento</option>
+                            <option value="Ocupada">Ocupada</option>
+                        </select>
+                        <!-- <input type="text" id="estado" name="estado" required onblur="validarHabitacion(event.target)"> -->
+                        <div id="estadoE"></div>
+                    </div>
+
+                    <div>
+                        <label for="camas">Camas:</label>
+                        <input type="number" id="camas" name="camas" required min="1"
+                            onblur="validarHabitacion(event.target)">
+                        <div id="camasE"></div>
+                    </div>
+
+                    <div>
+                        <label for="camasG">Camas Grandes:</label>
+                        <input type="number" id="camasG" name="camasG" required min="1"
+                            onblur="validarHabitacion(event.target)">
+                        <div id="camasGE"></div>
+                    </div>
+
+
+                    <button type="reset" id="btnLimpiarH">Limpiar</button>
+                    <button id="btnActualizarHabitacion" type="button">Actualizar</button>
+                </form>
+            </div>
+        </div>
+
+
     </div>
     <script src="./js/validations.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

@@ -171,6 +171,39 @@ const validarEmpleado = (target) => {
   }
 };
 
+const validarHabitacion = (target) => {
+  if (target.id == 'estado') {
+    const estadoE = document.getElementById("estadoE");
+    if (target.value.trim() === '') {
+      estadoE.textContent = 'Dato incompleto'
+      estadoE.classList.add('error')
+    } else {
+      estadoE.textContent = "";
+      estadoE.classList.remove("error");
+    }
+  }
+  if (target.id == 'camas') {
+    const camasE = document.getElementById("camasE");
+    if (target.value.trim() === '') {
+      camasE.textContent = 'Dato incompleto'
+      camasE.classList.add('error')
+    } else {
+      camasE.textContent = "";
+      camasE.classList.remove("error");
+    }
+  }
+  if (target.id == 'camasG') {
+    const camasGE = document.getElementById("camasGE");
+    if (target.value.trim() === '') {
+      camasGE.textContent = 'Dato incompleto'
+      camasGE.classList.add('error')
+    } else {
+      camasGE.textContent = "";
+      camasGE.classList.remove("error");
+    }
+  }
+}
+
 // const validaRun = (run) => {
 //   const Fn = {
 //       // Valida el rut con su cadena completa "XXXXXXXX-X"

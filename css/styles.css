@@ -515,3 +515,54 @@ path {
     }
   }
 }
+
+#modal-editar-habitacion {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-content: baseline;
+
+  & .modal-content {
+    max-width: 400px;
+
+    & > div {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    & > form {
+      display: flex;
+      gap: 1rem;
+      flex-direction: column;
+
+      & > div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: start;
+        max-height: 70px;
+      }
+
+      & > button {
+        background-color: transparent !important;
+        outline: none;
+        border-radius: 5px;
+        padding: .8rem 0;
+        font-weight: bold;
+        border: 1px solid black;
+      }
+
+      & > button:nth-last-child(1) {
+        background-color: #64257b !important;
+        color: white;
+        margin-top: .5rem;
+
+        &:hover {
+          background-color: #9538b6 !important;
+        }
+      }
+    }
+  }
+}
