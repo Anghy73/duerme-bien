@@ -382,6 +382,8 @@ btnRegistrarCliente.addEventListener('click', async () => {
     fono: `+56 9 ${contactE}`
   }
 
+  console.log(datos);
+
   if (
     rutE.trim() === "" ||
     nombreE.trim() === "" ||
