@@ -34,6 +34,8 @@ btnActualizarCliente.style.display = 'none'
 
 const modalEditarHabitacion = document.getElementById('modal-editar-habitacion')
 
+const modalEditarReserva = document.getElementById('modal-editar-reserva')
+
 // Editar
 
 const formEditCliente = document.getElementById('formEditCliente')
@@ -82,6 +84,7 @@ for (let i = 0; i < spans.length; i++) {
     cerrarModal(modalEmpleado);
     cerrarModal(modalCliente);
     cerrarModal(modalEditarHabitacion);
+    cerrarModal(modalEditarReserva);
     habitacionesD.innerHTML = "";
     runD.innerHTML = "";
     limpiar()
@@ -109,6 +112,9 @@ window.onclick = (event) => {
     formEmpleados.reset();
   } else if (event.target == modalEditarHabitacion) {
     cerrarModal(modalEditarHabitacion);
+    limpiar()
+  } else if (event.target == modalEditarReserva) {
+    cerrarModal(modalEditarReserva);
     limpiar()
   }
 };

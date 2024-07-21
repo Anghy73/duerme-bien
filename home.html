@@ -223,7 +223,6 @@
                             <option value="Mantenimiento">Mantenimiento</option>
                             <option value="Ocupada">Ocupada</option>
                         </select>
-                        <!-- <input type="text" id="estado" name="estado" required onblur="validarHabitacion(event.target)"> -->
                         <div id="estadoE"></div>
                     </div>
 
@@ -244,6 +243,37 @@
 
                     <button type="reset" id="btnLimpiarH">Limpiar</button>
                     <button id="btnActualizarHabitacion" type="button">Actualizar</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="modal-editar-reserva" class="modal">
+            <div class="modal-content">
+                <div>
+                    <span class="close">&times;</span>
+                    <h3>Actualizar Reserva</h3>
+                </div>
+                <hr>
+                </hr>
+                <form id="formEditarReserva">
+                    <div>
+                        <label for="FechaI">Fecha de Inicio:</label>
+                        <input type="date">
+                        <div id="fechaIE"></div>
+                    </div>
+                    <div>
+                        <label for="FechaI">Fecha de Fin:</label>
+                        <input type="date">
+                        <div id="fechaIE"></div>
+                    </div>
+                    <div>
+                        <label for="FechaI">Detalle:</label>
+                        <textarea name="" id="" placeholder="..."></textarea>
+                        <div id="fechaIE"></div>
+                    </div>
+
+                    <button type="reset" id="btnLimpiarR">Limpiar</button>
+                    <button id="btnActualizarReserva" type="button">Actualizar</button>
                 </form>
             </div>
         </div>
