@@ -24,6 +24,9 @@ document.addEventListener("DOMContentLoaded", function () {
         // Inserta el HTML de la tabla en mainContent
         tableHead.innerHTML = tableH;
         tableBody.innerHTML = tableB;
+        
+        const btnsF = tableBody.querySelectorAll('.btn.btnFinalizar')
+        actualizarEstado(btnsF)
 
         const btnsE = tableBody.querySelectorAll('.btn.btnEditarReserva')
         editarReserva(btnsE)
@@ -174,6 +177,40 @@ const eliminarReserva = (btns) => {
         })
     })
 }
+
+const actualizarEstado = (btns) => {
+    btns.forEach(btn => {
+        btn.addEventListener('click', async (e) => {
+            const reservaID = e.target.id
+
+            const datosF = await fetchData('reserva', {
+                codreserva: reservaID
+            })
+
+            const habitacionID = datosF.fetchedData[0].fk_idhabitacion
+
+            const { dataR, errorR } = await updateData(
+                "reserva",
+                {
+                    estado: 'Finalizada'
+                },
+                { codreserva: reservaID}
+            );
+
+            const { dataH, errorH } = await updateData(
+                "habitacion",
+                {
+                    estado: 'Disponible'
+                },
+                { idhabitacion: habitacionID}
+            );
+
+
+
+        })
+    })
+}
+
 
 function validarErroresFormulario() {
     const errores = document.querySelectorAll(".error");
