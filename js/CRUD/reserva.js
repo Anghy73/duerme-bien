@@ -1,4 +1,6 @@
-import { deleteData, fetchData } from '../supabase.mjs';
+import { deleteData, fetchData, updateData } from '../supabase.mjs';
+
+const formEditarReserva = document.getElementById('formEditarReserva')
 
 // Cargar el contenido de la página
 document.addEventListener("DOMContentLoaded", function () {
@@ -66,11 +68,61 @@ const generateTableReserva = (reservas) => {
 
 const editarReserva = (btns) => {
     btns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            console.log('click');
-
+        btn.addEventListener('click', async (e) => {
             const modalEditarReserva = document.getElementById('modal-editar-reserva')
+            const btnActualizarReserva = document.getElementById('btnActualizarReserva')
+            const reservaID = e.target.id
+
+            const datosF = await fetchData('reserva', {
+                codreserva: e.target.id
+            })
+
+            console.log(datosF.fetchedData);
+
+            const fechaI = document.getElementById('fechaI')
+            const fechaF = document.getElementById('fechaF')
+            const detalleR = document.getElementById('detalleR')
+
+            fechaI.value = datosF.fetchedData[0].fecha_inicio
+            fechaF.value = datosF.fetchedData[0].fecha_fin
+            detalleR.value = datosF.fetchedData[0].detalle
+
             modalEditarReserva.style.display = 'flex'
+
+            btnActualizarReserva.addEventListener('click', async (e) => {
+                const fechaI = document.getElementById('fechaI').value
+                const fechaF = document.getElementById('fechaF').value
+                const detalleR = document.getElementById('detalleR').value
+
+                const datos = {
+                    fecha_inicio: fechaI,
+                    fecha_fin: fechaF,
+                    detalle: detalleR
+                };
+                if (fechaI.trim() == '' || fechaF.trim() == '') {
+                    return alert('Faltas datos por completar')
+                } else {
+                    if (fechaI > fechaF) {
+                        return alert('Las fechas no son correctas')
+                    } else {
+                        if (validarErroresFormulario().length >= 1) {
+                            return alert('hay un campo incorrecto')
+                        }
+    
+                        const { data, error } = await updateData(
+                            "reserva",
+                            {
+                                ...datos
+                            },
+                            { codreserva: reservaID}
+                        );
+    
+                        limpiar()
+                    }
+                }
+
+            })
+
         })
     })
 }
@@ -140,5 +192,5 @@ function limpiar() {
     formReserva.reset();
     formCliente.reset();
     formEmpleados.reset();
-    formEditarHabitacion.reset();
+    formEditarReserva.reset();
 }

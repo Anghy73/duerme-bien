@@ -204,6 +204,24 @@ const validarHabitacion = (target) => {
   }
 }
 
+const validarReserva = (target) => {
+  if (target.id == 'fechaI') {
+    const fechaIE = document.getElementById('fechaIE')
+
+    if (target.value == '') {
+      fechaIE.textContent = 'Dato incompleto'
+      fechaIE.classList.add('error')
+    } else {
+      fechaIE.textContent = "";
+      fechaIE.classList.remove("error");
+    }
+
+  }
+  if (target.id == 'fechaF') {
+    const fechaFE = document.getElementById('fechaFE')
+  }
+}
+
 // const validaRun = (run) => {
 //   const Fn = {
 //       // Valida el rut con su cadena completa "XXXXXXXX-X"

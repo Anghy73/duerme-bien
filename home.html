@@ -258,18 +258,17 @@
                 <form id="formEditarReserva">
                     <div>
                         <label for="FechaI">Fecha de Inicio:</label>
-                        <input type="date">
+                        <input type="date" id="fechaI" onblur="validarReserva(event.target)">
                         <div id="fechaIE"></div>
                     </div>
                     <div>
-                        <label for="FechaI">Fecha de Fin:</label>
-                        <input type="date">
-                        <div id="fechaIE"></div>
+                        <label for="FechaF">Fecha de Fin:</label>
+                        <input type="date" id="fechaF" onblur="validarReserva(event.target)">
+                        <div id="fechaFE"></div>
                     </div>
                     <div>
-                        <label for="FechaI">Detalle:</label>
-                        <textarea name="" id="" placeholder="..."></textarea>
-                        <div id="fechaIE"></div>
+                        <label for="Detalle">Detalle:</label>
+                        <textarea name="" id="detalleR" placeholder="..."></textarea>
                     </div>
 
                     <button type="reset" id="btnLimpiarR">Limpiar</button>
