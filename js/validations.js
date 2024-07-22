@@ -117,7 +117,7 @@ const validarCliente = (target) => {
       return
     }
 
-    if (!validaRun(target.value.trim() == '')) {
+    if (!validaRun(target.value.trim())) {
       rutE.textContent = "El run no es válido";
       rutE.classList.add("error");
     }
