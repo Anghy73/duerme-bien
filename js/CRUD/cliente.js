@@ -74,13 +74,11 @@ const editarCliente = (btns) => {
             const nombreE = document.getElementById("nombreC");
             const apellidoE = document.getElementById("apellidoC");
             const contactE = document.getElementById("contactC");
-            const fono = datos.fetchedData[0].fono
-            const fonoFormat = fono.split(' ')[2]
 
             rutE.value = datos.fetchedData[0].rutcliente
             nombreE.value = datos.fetchedData[0].nombre
             apellidoE.value = datos.fetchedData[0].apellido
-            contactE.value = parseInt(fonoFormat)
+            contactE.value = datos.fetchedData[0].fono
             
             modalCliente.style.display = 'flex'
 
