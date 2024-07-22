@@ -102,7 +102,7 @@ const editarCliente = (btns) => {
                 ) {
                     return alert("Faltan datos por completar");
                 } else {
-                    if (contactE.trim().length === 8) {
+                    if  (contactE.trim().length > 999999999 || contactE.trim().length < 10000000) {
                         if (validarErroresFormulario().length >= 1) {
                             return alert('hay un campo incorrecto')
                         }
