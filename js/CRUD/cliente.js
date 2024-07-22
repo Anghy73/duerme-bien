@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Generar tabla clientes
 const generateTableclientes = (clientes) => {
-    const head = '<th class="col-1">Rut</th><th>Nombre</th><th>Apellido</th><th>Fono</th><th class="col-1"></th>'
+    const head = '<th class="col-1">Rut</th><th>Nombre</th><th>Apellido</th><th>Teléfono</th><th class="col-1"></th>'
     let body = '';
     clientes.forEach(reg => {
         body += `<tr>
@@ -81,8 +81,6 @@ const editarCliente = (btns) => {
             nombreE.value = datos.fetchedData[0].nombre
             apellidoE.value = datos.fetchedData[0].apellido
             contactE.value = parseInt(fonoFormat)
-
-            
             
             modalCliente.style.display = 'flex'
 
@@ -96,7 +94,7 @@ const editarCliente = (btns) => {
                     rutcliente: rutE,
                     nombre: nombreE,
                     apellido: apellidoE,
-                    fono: `+56 9 ${contactE}`
+                    fono: contactE
                 }
 
                 if (
@@ -104,7 +102,7 @@ const editarCliente = (btns) => {
                     apellidoE.trim() === "" ||
                     contactE.trim() === ""
                 ) {
-                    return alert("faltan datos por completar");
+                    return alert("Faltan datos por completar");
                 } else {
                     if (contactE.trim().length === 8) {
                         if (validarErroresFormulario().length >= 1) {

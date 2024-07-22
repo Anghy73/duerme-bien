@@ -3,7 +3,7 @@
 const validarRegistro = (target) => {
   if (target.id == "fechaInicio") {
     const fechaInicioE = document.getElementById("fechaInicioE");
-    const fechaFin = new Date(document.getElementById.value("fechaFin"));
+    const fechaFin = new Date(document.getElementById("fechaFin").value);
     const fechaInicio = new Date(target.value);
 
     fechaInicioE.textContent = "";
@@ -23,7 +23,7 @@ const validarRegistro = (target) => {
 
   if (target.id == "fechaFin") {
     const fechaFinE = document.getElementById("fechaFinE");
-    const fechaInicio = new Date(document.getElementById.value("fechaInicio"));
+    const fechaInicio = new Date(document.getElementById("fechaInicio").value);
     const fechaFin = new Date(target.value);
 
     fechaFinE.textContent = "";
