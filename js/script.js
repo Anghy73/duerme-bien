@@ -21,7 +21,7 @@ const formReserva = document.getElementById("formReserva");
 const empleadosLink = document.getElementById("empleadosLink");
 const cerrarSesion = document.getElementById("cerrarSesion");
 const formEmpleados = document.getElementById("formEmpleados");
-// const btnRegistrarEmpleado = document.getElementById("btnRegistrarEmpleado");
+const btnRegistrarEmpleado = document.getElementById("btnRegistrarEmpleado");
 const clientesLink = document.getElementById("clientesLink");
 const habitacionesLink = document.getElementById("habitacionesLink");
 const reservasLink = document.getElementById("reservasLink");
@@ -33,7 +33,7 @@ const btnActualizarCliente = document.getElementById('btnActualizarCliente')
 btnActualizarCliente.style.display = 'none'
 
 const modalEditarHabitacion = document.getElementById('modal-editar-habitacion')
-
+const modalEditarEmpleado = document.getElementById('modal-editar-empleado')
 const modalEditarReserva = document.getElementById('modal-editar-reserva')
 
 // Editar
@@ -85,6 +85,7 @@ for (let i = 0; i < spans.length; i++) {
     cerrarModal(modalCliente);
     cerrarModal(modalEditarHabitacion);
     cerrarModal(modalEditarReserva);
+    cerrarModal(modalEditarEmpleado);
     habitacionesD.innerHTML = "";
     runD.innerHTML = "";
     limpiar()
@@ -116,14 +117,15 @@ window.onclick = (event) => {
   } else if (event.target == modalEditarReserva) {
     cerrarModal(modalEditarReserva);
     limpiar()
+  } else if (event.target == modalEditarEmpleado) {
+    cerrarModal(modalEditarEmpleado);
+    limpiar()
   }
 };
 
 const tipo = window.localStorage.getItem("tipo");
 
 if (tipo === "Administrador") {
-  console.log(' si admin');
-  // btnRegistrarEmpleado.style.display = "flex";
   btnAgregarEmpleado.style.display = "flex";
   empleadosLink.style.display = "flex";
 
@@ -141,16 +143,11 @@ if (tipo === "Administrador") {
 const path = window.location.pathname;
 
 cerrarSesion.addEventListener("click", () => {
-  console.log(path);
   if (path === "/duerme-bien/home.html" || path === "/home.html") {
     window.localStorage.setItem("user", "");
     window.location.pathname = "/duerme-bien/";
   }
 });
-
-// addHabitaciones.addEventListener('click', () => )
-
-// let numH = 0
 
 const generateselects = async () => {
   const fetchedDataH = await fetchData("habitacion");
@@ -343,7 +340,7 @@ btnRegistrar.addEventListener("click", async () => {
 
 // Empleado
 
-btnAgregarEmpleado.addEventListener("click", async () => {
+btnRegistrarEmpleado.addEventListener("click", async () => {
   const idE = generateID();
   const nombreT = document.getElementById("nombreT").value;
   const apellidoT = document.getElementById("apellidoT").value;
@@ -357,7 +354,6 @@ btnAgregarEmpleado.addEventListener("click", async () => {
     apellido: apellidoT,
     tipo: tipoT,
   }
-  console.log(datos);
 
   if (
     nombreT.trim() === "" ||
@@ -370,6 +366,7 @@ btnAgregarEmpleado.addEventListener("click", async () => {
     const { error } = await insertData("empleados", {
       ...datos
     });
+    limpiar()
   }
 });
 

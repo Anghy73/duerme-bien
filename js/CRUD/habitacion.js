@@ -74,7 +74,6 @@ const eliminarHabitacion = (btns) => {
             }).then(async (result) => {
                 if (result.isConfirmed) {
                     const borradoOk = await deleteData('habitacion', { idhabitacion: habitacionID });
-                    console.log(borradoOk);
 
                     if (borradoOk.error) {
                         return alert('No se puede eliminar una habitacion con reservación');

@@ -1,7 +1,4 @@
 const validarRegistro = (target) => {
-  console.log(target);
-  console.log(target.value);
-
   if (target.id == "fechaFin") {
     const fechaFinE = document.getElementById("fechaFinE");
     const fechaActual = new Date();
@@ -138,7 +135,6 @@ const validarCliente = (target) => {
 const validarEmpleado = (target) => {
   if (target.id == "nombreT") {
     const nombreE = document.getElementById("nombreET");
-    console.log(nombreE);
     if (target.value.trim() === '') {
       nombreE.textContent = 'Dato incompleto'
       nombreE.classList.add('error')
@@ -221,6 +217,30 @@ const validarReserva = (target) => {
     const fechaFE = document.getElementById('fechaFE')
   }
 }
+
+const validarEmpleadoE = (target) => {
+  if (target.id == "nombreEM") {
+    const nombreME = document.getElementById("nombreME");
+    if (target.value.trim() === '') {
+      nombreME.textContent = 'Dato incompleto'
+      nombreME.classList.add('error')
+    } else {
+      nombreME.textContent = "";
+      nombreME.classList.remove("error");
+    }
+  }
+
+  if (target.id == 'apellidoEM') {
+    const apellidoME = document.getElementById("apellidoME");
+    if (target.value.trim() === '') {
+      apellidoME.textContent = 'Dato incompleto'
+      apellidoME.classList.add('error')
+    } else {
+      apellidoME.textContent = "";
+      apellidoME.classList.remove("error");
+    }
+  }
+};
 
 // const validaRun = (run) => {
 //   const Fn = {

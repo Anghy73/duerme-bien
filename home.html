@@ -247,6 +247,45 @@
             </div>
         </div>
 
+        <div id="modal-editar-empleado" class="modal">
+            <div class="modal-content">
+                <div>
+                    <span class="close">&times;</span>
+                    <h3>Actualizar Empleado</h3>
+                </div>
+                <hr>
+                </hr>
+                <form id="formEditarEmpleado">
+
+                    <div>
+                        <label for="Tipo">Tipo:</label>
+                        <select name="" id="selectsTiposE">
+                            <option value="Administrador">Administrador</option>
+                            <option value="Encargado">Encargado</option>
+                        </select>
+                        <div id="tiposE"></div>
+                    </div>
+
+                    <div>
+                        <label for="nombreEM">Nombre:</label>
+                        <input type="text" id="nombreEM" name="nombre" required
+                            onblur="validarEmpleadoE(event.target)">
+                        <div id="nombreME"></div>
+                    </div>
+
+                    <div>
+                        <label for="apellidoEM">Apellido:</label>
+                        <input type="text" id="apellidoEM" name="apellidoEM" required
+                            onblur="validarEmpleadoE(event.target)">
+                        <div id="apellidoME"></div>
+                    </div>
+
+                    <button type="reset" id="btnLimpiarE">Limpiar</button>
+                    <button id="btnActualizarEmpleado" type="button">Actualizar</button>
+                </form>
+            </div>
+        </div>
+
         <div id="modal-editar-reserva" class="modal">
             <div class="modal-content">
                 <div>

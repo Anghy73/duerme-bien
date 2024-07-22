@@ -80,8 +80,6 @@ const editarReserva = (btns) => {
                 codreserva: e.target.id
             })
 
-            console.log(datosF.fetchedData);
-
             const fechaI = document.getElementById('fechaI')
             const fechaF = document.getElementById('fechaF')
             const detalleR = document.getElementById('detalleR')

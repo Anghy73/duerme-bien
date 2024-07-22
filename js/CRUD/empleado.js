@@ -1,4 +1,6 @@
-import { deleteData, fetchData } from '../supabase.mjs'
+import { deleteData, fetchData, updateData } from '../supabase.mjs'
+
+const formEditarEmpleado = document.getElementById('formEditarEmpleado')
 
 document.addEventListener("DOMContentLoaded", function () {
     const empleadosLink = document.getElementById("empleadosLink");
@@ -21,8 +23,10 @@ document.addEventListener("DOMContentLoaded", function () {
         tableHead.innerHTML = tableH;
         tableBody.innerHTML = tableB;
 
-        const btns = tableBody.querySelectorAll('.btn.btnEliminarEmpleado')
-        eliminarEmpleado(btns)
+        const btnsE = tableBody.querySelectorAll('.btn.btnEditarEmpleado')
+        editarEmpleado(btnsE)
+        const btnsD = tableBody.querySelectorAll('.btn.btnEliminarEmpleado')
+        eliminarEmpleado(btnsD)
 
         mainContent.style.display = "block";
     }
@@ -38,7 +42,7 @@ const generateTableEmpleados = (emp) => {
                     <td>${reg.apellido}</td>
                     <td>${reg.tipo}</td>
                     <td nowrap row">
-                        <button class="btn btn-warning btnEditar" id="${reg.rutempleado}" title="Editar"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                        <button class="btn btn-warning btnEditarEmpleado" id="${reg.rutempleado}" title="Editar"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
   <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z"/>
 </svg></button>
                         <button class="btn btn-danger btnEliminarEmpleado" id="${reg.rutempleado}" title="Eliminar"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
@@ -51,7 +55,6 @@ const generateTableEmpleados = (emp) => {
 }
 
 const eliminarEmpleado = (btns) => {
-    console.log('si');
     btns.forEach(btn => {
         btn.addEventListener('click', async (e) => {
             const empleadoID = e.target.getAttribute('id')
@@ -72,8 +75,7 @@ const eliminarEmpleado = (btns) => {
                         text: "Su regostro ha sido eliminado",
                         icon: "success"
                     })
-
-                    // console.log(borradoOk);
+                    
                     tableHead.innerHTML = ''
                     tableBody.innerHTML = ''
                     const { fetchedData, error } = await fetchData('empleados');
@@ -87,4 +89,89 @@ const eliminarEmpleado = (btns) => {
             })
         })
     })
+}
+
+
+const editarEmpleado = (btns) => {
+    btns.forEach(btn => {
+        btn.addEventListener('click', async (e) => {
+
+            console.log('daskljdlkasjd');
+
+            const modalEditarEmpleado = document.getElementById('modal-editar-empleado')
+            const btnActualizarEmpleado = document.getElementById('btnActualizarEmpleado')
+
+            const empleadoID = e.target.id
+
+            const datosF = await fetchData('empleados', {
+                rutempleado: empleadoID
+            })
+
+            console.log(datosF.fetchedData);
+
+            const selectsTiposE = document.getElementById('selectsTiposE')
+            const nombreEM = document.getElementById('nombreEM')
+            const apellidoEM = document.getElementById('apellidoEM')
+
+            selectsTiposE.value = datosF.fetchedData[0].tipo
+            nombreEM.value = datosF.fetchedData[0].nombre
+            apellidoEM.value = datosF.fetchedData[0].apellido
+
+            modalEditarEmpleado.style.display = 'flex'
+
+            btnActualizarEmpleado.addEventListener('click', async () => {
+
+                    
+                const selectsTiposE = document.getElementById('selectsTiposE').value
+                const nombreEM = document.getElementById('nombreEM').value
+                const apellidoEM = document.getElementById('apellidoEM').value
+
+                const datos = {
+                    tipo: selectsTiposE,
+                    nombre: nombreEM,
+                    apellido: apellidoEM
+                };
+                if (nombreEM.trim() == '' || apellidoEM.trim() == '') {
+                    return alert('Faltas datos por completar')
+                } else {
+                    if (validarErroresFormulario().length >= 1) {
+                        return alert('hay un campo incorrecto')
+                    }
+
+                    const { data, error } = await updateData(
+                        "empleados",
+                        {
+                            ...datos
+                        },
+                        { rutempleado: empleadoID}
+                    );
+
+                    limpiar()
+                }
+
+            })
+
+        })
+    })
+}
+
+function validarErroresFormulario() {
+    const errores = document.querySelectorAll(".error");
+    console.log(errores);
+    return errores
+}
+
+
+function limpiar() {
+    const errores = document.querySelectorAll(".error");
+    console.log(errores);
+    errores.forEach((err) => {
+        err.textContent = "";
+        err.classList.remove("error");
+    });
+    formReserva.reset();
+    formCliente.reset();
+    formEmpleados.reset();
+    formEditarReserva.reset();
+    formEditarEmpleado.reset();
 }
