@@ -286,7 +286,7 @@ btnRegistrar.addEventListener("click", async () => {
         formReserva.reset();
       }
     } else {
-      return alert(`la cantidad de pasajeros disponible es de ${cupos}`);
+      return alert(`La cantidad de pasajeros disponible es de ${cupos}`);
     }
   }
 });
