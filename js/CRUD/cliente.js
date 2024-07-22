@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Generar tabla clientes
 const generateTableclientes = (clientes) => {
-    const head = '<th class="col-1">Rut</th><th>Nombre</th><th>Apellido</th><th>Teléfono</th><th class="col-1"></th>'
+    const head = '<th class="col-2">Rut</th><th>Nombre</th><th>Apellido</th><th>Teléfono</th><th class="col-1"></th>'
     let body = '';
     clientes.forEach(reg => {
         body += `<tr>
