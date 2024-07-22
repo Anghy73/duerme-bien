@@ -258,10 +258,8 @@ btnRegistrar.addEventListener("click", async () => {
     return alert("Faltan datos por completar");
   } else {
     const fetchedDataH = await fetchData("habitacion");
-    const habitacionSelect = await fetchedDataH.fetchedData.filter(
-      (item) => item.idhabitacion === habitacion
-    );
-    const cupos = habitacionSelect[0].cupos;
+    const habitacionObjeto = fetchedDataH.fetchedData.find(item => item.idhabitacion == habitacion);
+    const cupos = habitacionObjeto ? habitacionObjeto.cupos : null;
 
     if (pasajeros <= cupos) {
       if (validarErroresFormulario().length >= 1) {
