@@ -114,6 +114,7 @@ const validarCliente = (target) => {
     if (target.value.trim() === '') {
       rutE.textContent = 'Campo incompleto'
       rutE.classList.add('error')
+      return
     }
 
     if (!validaRun(target.value.trim() == '')) {
@@ -296,6 +297,7 @@ const validaRun = (run) => {
   const Fn = {
     // Valida el rut con su cadena completa "XXXXXXXX-X"
     validaRut: function (rutCompleto) {
+      rutCompleto = String(rutCompleto);
       rutCompleto = rutCompleto.replace("‐", "-");
       if (!/^[0-9]+[-|‐]{1}[0-9kK]{1}$/.test(rutCompleto))
         return false;
