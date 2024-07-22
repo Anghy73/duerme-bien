@@ -226,10 +226,8 @@ btnRegistrar.addEventListener("click", async () => {
   const diasEstadia = diferenciaTiempo / (1000 * 3600 * 24);
 
   const fetchedDataH = await fetchData("habitacion");
-  const habitacionSelect = fetchedDataH.fetchedData.filter(
-    (item) => item.idhabitacion === habitacion
-  );
-  const cupos = habitacionSelect[0].cupos;
+  const habitacionObjeto = fetchedDataH.fetchedData.find(item => item.idhabitacion == habitacion);
+  const cupos = habitacionObjeto ? habitacionObjeto.cupos : null;
 
   // Calcular el costo total usando la fórmula proporcionada
   costoTotal = (valorBase + valorCupo * cupos) * diasEstadia;
@@ -267,7 +265,7 @@ btnRegistrar.addEventListener("click", async () => {
 
     if (pasajeros <= cupos) {
       if (validarErroresFormulario().length >= 1) {
-        return alert('hay un campo incorrecto')
+        return alert('Hay un campo incorrecto')
       } else {
         console.log("Guardando reserva...");
         await insertData("reserva", {
